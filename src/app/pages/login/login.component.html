@@ -1,0 +1,20 @@
+<div class="main__container">
+  <div class="login-card">
+
+    <main class="login-content">
+      <!-- login form -->
+      <h1 class="login-welcome-text">Welcome Back!</h1>
+      <form (submit)="login()" method="post" class="login-form">
+        <input type="text" autofocus placeholder="Account Username" name="username" class="login-input">
+        <input type="password" placeholder="Password" name="password" class="login-input">
+        <input type="submit" name="submit" placeholder="Log in" class="login-btn">
+      </form>
+    </main>
+    <!-- linking to signup -->
+    <aside class="login__illustration">
+      <span class="signup-notice">Don't have an account? &nbsp;</span>
+      <a class="signup-link" href="/signup/index.php">Sign up</a>
+    </aside>
+
+  </div>
+</div>

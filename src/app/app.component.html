@@ -1,0 +1,89 @@
+<!-- Slide Menu-->
+<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu()">
+  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
+    <section class="menu-header">
+      <span class="greeting__text">Welcome Back</span>
+      <div class="profile-image__container">
+        <img src="https://avatars3.githubusercontent.com/u/5658460?s=460&v=4" alt="profile-image"
+             class="profile__image">
+      </div>
+      <div class="account-details">
+        <span class="name__text">Hamed Baatour</span>
+        <span class="email__text">hamedbaatour@gmail.com</span>
+      </div>
+    </section>
+    <section class="menu-body">
+
+    </section>
+    <section class="menu-footer">
+
+    </section>
+  </nav>
+</aside>
+
+<div class="root__container">
+  <header [ngClass]="{'main__header-dark': darkModeActive}" class="main__header">
+
+    <div class="left__section">
+      <svg (click)="toggleMenu()" class="hamburger__icon" id="Menu_Burger_Icon" data-name="Menu Burger Icon"
+           viewBox="31.5 30 49.9 32">
+        <defs>
+          <style>.hamburger__icon__fill {
+            fill: #594e78
+          }</style>
+        </defs>
+        <rect id="Rectangle_9" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
+              class="hamburger__icon__fill" data-name="Rectangle 9" rx="2"
+              transform="translate(31.5 58)"/>
+        <rect id="Rectangle_10" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
+              class="hamburger__icon__fill" data-name="Rectangle 10" rx="2"
+              transform="translate(31.5 44)"/>
+        <rect id="Rectangle_11" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
+              class="hamburger__icon__fill" data-name="Rectangle 11" rx="2"
+              transform="translate(31.5 30)"/>
+      </svg>
+
+      <svg class="logo__icon" viewBox="150.3 22.2 213.7 42.8">
+        <path fill="#00ff9b" d="M150.3 65V22.2L193 65z" data-name="Path 1"/>
+        <path fill="#003eff" d="M193.1 65h-42.8L193 22.2z" data-name="Path 2"/>
+        <text [ngClass]="{'logo__text-dark': darkModeActive}" class="logo__text" fill="#432c85"
+              font-family="SegoeUI-Semibold,Segoe UI" font-size="30" font-weight="600"
+              letter-spacing=".1em" transform="translate(237 56)">
+          <tspan x="0" y="0">Minimis</tspan>
+        </text>
+      </svg>
+
+    </div>
+
+    <h3 class="date__text">Today</h3>
+
+
+    <div class="mode-toggle__container">
+      <span class="mode-toggle__text">Light</span>
+
+      <label class="toggle-button__container">
+        <input (click)="modeToggleSwitch()" type="checkbox" class="mode-toggle__input"/>
+        <span [ngClass]="{'mode-toggle__bg-checked': darkModeActive}" class="mode-toggle__bg"></span>
+        <span [ngClass]="{'mode-toggle__circle-checked': darkModeActive}" class="mode-toggle__circle"></span>
+      </label>
+
+
+      <span class="mode-toggle__text">Dark</span>
+    </div>
+
+  </header>
+
+  <!-- Main Content -->
+
+  <!--<router-outlet></router-outlet>-->
+  <main class="main__container">
+    <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="main__footer">
+    <small class="copyright__text">Copyright © 2018 Minimus</small>
+  </footer>
+</div>
