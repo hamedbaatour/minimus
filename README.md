@@ -1,6 +1,16 @@
 # Minimus
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+
+![Minimus](https://miro.medium.com/max/3600/1*57lZyqXY85XSTYR3IuZKCg.png)
+
+
+## Tutorial Blog Posts On Medium
+
+
+- **Part I:** https://bit.ly/2IXMWdb
+
+- **Part II:** https://bit.ly/2P0c86Z
+
 
 ## Development server
 
