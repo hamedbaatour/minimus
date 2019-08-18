@@ -16,11 +16,19 @@ Weather Card Styling
   cursor: pointer;
   background-color: white;
   border-radius: 1.75rem;
-  animation: fadein 1.25s ease-in-out 0ms 1;
+  animation: slideup 1s ease-in-out, fadein 1.25s ease-in-out 0ms 1;
+}
+
+.weather__card-add {
+  cursor: auto;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 255, 0.5);
+  width: 80%;
 }
 
 .weather__card-dark {
-  background: linear-gradient(to bottom, #711B86, #00057A);
+  /*background: linear-gradient(to bottom, #711B86, #00057A);*/
+background: linear-gradient(to bottom, #372865, #000000);
   color: white;
 }
 
@@ -104,3 +112,32 @@ Weather Card Styling
   width: 10rem;
 }
 
+.add-city-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
+  color: white;
+  margin-top: 2rem;
+  background-color: #2b244d;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.add-city-btn:hover {
+  background-color: #31feae;
+}
+
+.city-added-note {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadein 1s ease-in-out;
+  width: 100%;
+}
+
+.add-success-text{
+  font-size: 1.25rem;
+}

@@ -3,8 +3,24 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
+}
+
+.ngui-auto-complete > ul {
+  box-shadow: 0 0 2rem rgba(0, 0, 255, 0.3) !important;
+  border: none !important;
+  border-radius: 1rem;
+}
+
+.ngui-auto-complete .item {
+  padding: 1rem !important;
+  cursor: pointer;
+}
+
+.ngui-auto-complete .item:hover {
+  background-color: rgba(0, 0, 255, 0.1) !important;
 }
 
 @keyframes fadein {
@@ -14,4 +30,56 @@ body {
   to {
     opacity: 1;
   }
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(-25%);
+  }
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes slideright {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes scaleup {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+
+}
+
+@keyframes scaleup-circle {
+  from {
+    transform-origin: top;
+    transform: scale(0) translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform-origin: center;
+    transform: scale(1) translateY(-50%) rotate(360deg);
+  }
+
 }

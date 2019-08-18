@@ -1,9 +1,23 @@
 /*Home Layout*/
 .main__container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto-fill, 1fr);
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-items: center;
-  height: 100%;
+  flex-wrap: wrap;
+  min-height: 90vh;
+  position: relative;
 }
+
+/*.clouds {*/
+/*position: absolute;*/
+/*z-index: 0;*/
+/*height: 10rem;*/
+/*right: -20rem;*/
+/*animation: moveacross 45s infinite;*/
+/*}*/
+
+/*@keyframes moveacross {*/
+/*100% {*/
+/*right: 100vw;*/
+/*}*/
+/*}*/

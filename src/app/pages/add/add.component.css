@@ -1,0 +1,285 @@
+.add-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.main-card {
+  height: 87vh;
+  width: 90vw;
+  background-color: #fff;
+  border-radius: 1rem;
+  display: flex;
+  margin-top: -4rem;
+}
+
+.add-city-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #003EFF;
+  outline: none;
+  border: none;
+  color: white;
+  border-radius: 2rem;
+  font-size: 1rem;
+}
+
+.city-search-wrapper {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1;
+  position: relative;;
+  overflow-y: auto;
+}
+
+.city-search-header {
+  width: 100%;
+  min-height: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: column;
+}
+
+.city-search-body {
+  width: 100%;
+  min-height: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.city-search-hr {
+  word-spacing: 1rem;
+  margin: 2rem;
+}
+
+
+.search-city-input-wrapper {
+  position: relative;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+.search-city-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 3rem;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
+  font-size: 1rem;
+  color: #131F69;
+  text-transform: uppercase;
+}
+
+.search-city-input::placeholder {
+  font-size: 1rem;
+  color: #131F69;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.search-city-btn {
+  cursor: pointer;
+  position: absolute;
+  background-color: #31feae;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  right: 0;
+  top: -0.35rem;
+  outline: none;
+  border: none;
+  z-index: 5;
+  box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
+}
+
+.search-icon {
+  height: 50%;
+  width: 50%;
+}
+
+.fav-city-wrapper {
+  flex: 1 1;
+  position: relative;;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.fav-city-image {;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 1rem 1rem 0;
+  height: 100%;
+}
+
+
+.fav-city-image-overlay {
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+  background: rgba(43, 36, 77, 0.5);
+  border-radius: 0 1rem 1rem 0;
+}
+
+
+
+.fav-city-body, .fav-city-header {
+  position: relative;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.fav-city-body-subwrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+.fav-city-hr {
+  width: 3rem;
+}
+
+.fav-city-title, .city-search-title {
+  font-size: 1.85rem;
+  letter-spacing: 0.1rem;
+  word-break: break-all;
+}
+
+.fav-city-title {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.city-search-title {
+  color: #0c1066;
+  margin: 4rem 0 3rem 0;
+}
+
+
+.fav-city-date {
+  margin-top: 0.5rem;
+}
+
+.fav-city-temp {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.fav-city-name {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
+
+.fav-weather-icon {
+  width: 7rem;
+  margin-bottom: 4rem;
+}
+
+
+.fav-city-info {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  margin-top: -2rem;
+}
+
+.fav-city-state {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.fav-city-country {
+  margin-left: 0.75rem;
+}
+
+.fav-city-name-wrapper {
+  margin-bottom: 2rem;
+}
+
+.fav-city-add-btn {
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 2rem;
+  border: 2px solid white;
+  border-radius: 3rem;
+  padding: 1.25rem 2rem;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+
+.fav-city-add-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.fav-city-added-btn {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+app-weather-card {
+  margin: 2rem 0;
+  min-width: 28rem;
+}
+
+/* Media Query:   LT-XL  */
+@media screen and (max-width: 1919px) {
+  .add-city-btn {
+    height: 80%;
+    width: 75%;
+  }
+}
+
+/* Media Query:   LT-MD   */
+@media screen and (max-width: 959px) {
+
+  app-weather-card {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+
+  .fav-city-wrapper {
+    height: auto;
+  }
+
+  .add-wrapper {
+    flex-flow: column;
+  }
+
+  .main-card {
+    flex-flow: column;
+    margin-left: -1rem;
+    margin-bottom: 2rem;
+    height: auto;
+  }
+
+  .city-search-title {
+    margin: 2rem;
+  }
+
+  .fav-city-wrapper, .city-search-wrapper, .city-search-header, .city-search-body, .fav-city-header, .fav-city-body, .fav-city-body {
+    width: 100%;
+  }
+
+  .fav-city-wrapper, .fav-city-image, .fav-city-image-overlay {
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .fav-city-image {
+    background-size: cover;
+    background: no-repeat 50% 50%;
+  }
+
+}

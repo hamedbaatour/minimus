@@ -1,7 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {WeatherService} from '../../services/weather/weather.service';
 import {UiService} from '../../services/ui/ui.service';
+import {Subscription} from 'rxjs';
+import {first} from 'rxjs/operators';
+import {FbService} from '../../services/fb/fb.service';
 
 @Component({
   selector: 'app-weather-card',
@@ -10,44 +13,86 @@ import {UiService} from '../../services/ui/ui.service';
 })
 export class WeatherCardComponent implements OnInit, OnDestroy {
 
-  condition: string;
-  currentTemp: number;
+  @Input() set city(city: string) {
+    this.cityName = city;
+    this.weather.getWeather(city)
+      .pipe(first())
+      .subscribe((payload) => {
+        this.state = payload.weather[0].main;
+        this.temp = Math.ceil(payload.main.temp);
+      }, (err) => {
+        this.errorMessage = err.error.message;
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000);
+      });
+    this.weather.getForecast(city)
+      .pipe(first())
+      .subscribe((payload) => {
+        this.maxTemp = Math.round(payload[0].main.temp);
+        this.minTemp = Math.round(payload[0].main.temp);
+        for (const res of payload) {
+          if (new Date().toLocaleDateString('en-GB') === new Date(res.dt_txt).toLocaleDateString('en-GB')) {
+            this.maxTemp = res.main.temp > this.maxTemp ? Math.round(res.main.temp) : this.maxTemp;
+            this.minTemp = res.main.temp < this.minTemp ? Math.round(res.main.temp) : this.minTemp;
+          }
+        }
+      }, (err) => {
+        this.errorMessage = err.error.message;
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000);
+      });
+
+  }
+
+  @Input() addMode;
+  @Output() cityStored = new EventEmitter();
+  citesWeather: Object;
+  darkMode: boolean;
+  sub1: Subscription;
+  state: string;
+  temp: number;
   maxTemp: number;
   minTemp: number;
-  darkMode: boolean;
+  errorMessage: string;
+  cityName;
+  cityAdded = false;
 
   constructor(public weather: WeatherService,
               public router: Router,
-              public ui: UiService) {
+              public ui: UiService,
+              public fb: FbService) {
   }
 
   ngOnInit() {
-    this.ui.darkModeState.subscribe((isDark) => {
+    this.sub1 = this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
-    });
-
-    this.weather.getWeatherState('Paris')
-      .subscribe((data: string) => {
-        this.condition = data;
-      });
-
-    this.weather.getCurrentTemp('Paris').subscribe((data: number) => {
-      this.currentTemp = data;
-    });
-    this.weather.getMinTemp('Paris').subscribe((data: number) => {
-      this.minTemp = data;
-    });
-    this.weather.getMaxTemp('Paris').subscribe((data: number) => {
-      this.maxTemp = data;
     });
   }
 
   ngOnDestroy() {
-
+    this.sub1.unsubscribe();
   }
 
   openDetails() {
-    this.router.navigateByUrl('/details/paris');
+    if (!this.addMode) {
+      this.router.navigateByUrl('/details/' + this.cityName);
+    }
   }
+
+  addCity() {
+    this.fb.addCity(this.cityName).subscribe(() => {
+      this.cityName = null;
+      this.maxTemp = null;
+      this.minTemp = null;
+      this.state = null;
+      this.temp = null;
+      this.cityAdded = true;
+      this.cityStored.emit();
+      setTimeout(() => this.cityAdded = false, 2000);
+    });
+  }
+
 
 }
