@@ -19,8 +19,8 @@
 }
 
 .signup-header {
-  position: absolute;
-  top: 5rem;
+  display: block;
+  margin-bottom: 2rem;
   font-size: 2.5rem;
   color: #0c1066;
   letter-spacing: 0.2rem;
