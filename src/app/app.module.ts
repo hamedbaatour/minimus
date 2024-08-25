@@ -17,7 +17,6 @@ import {AngularFireLite} from 'angularfire-lite';
 import {environment} from '../environments/environment';
 import {NguiAutoCompleteModule} from '@ngui/auto-complete';
 import {FormsModule} from '@angular/forms';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -32,13 +31,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ErrorComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NguiAutoCompleteModule,
     FormsModule,
     AngularFireLite.forRoot(environment.config),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   bootstrap: [AppComponent]
 })
