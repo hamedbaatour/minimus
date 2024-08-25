@@ -32,15 +32,17 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
     SignupComponent,
     ErrorComponent,
   ],
+  providers: [
+    provideFirebaseApp(() => initializeApp(environment.config)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NguiAutoCompleteModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.config)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
   ],
   bootstrap: [AppComponent]
 })

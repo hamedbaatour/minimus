@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "minimus:build"
+            "buildTarget": "minimus:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "minimus:build:production"
+              "buildTarget": "minimus:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "minimus:build"
+            "buildTarget": "minimus:build"
           }
         },
         "test": {
