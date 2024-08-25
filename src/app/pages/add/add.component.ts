@@ -3,11 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {WeatherService} from '../../services/weather/weather.service';
 import {FbService} from '../../services/fb/fb.service';
 import {first} from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { NguiAutoCompleteModule } from 'ngxui-auto-complete';
+import { NgIf, NgSwitch, NgSwitchCase, NgClass } from '@angular/common';
+import { WeatherCardComponent } from '../../ui/weather-card/weather-card.component';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+    selector: 'app-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.css'],
+    standalone: true,
+    imports: [FormsModule, NguiAutoCompleteModule, NgIf, WeatherCardComponent, NgSwitch, NgSwitchCase, NgClass]
 })
 export class AddComponent implements OnInit, OnDestroy {
 

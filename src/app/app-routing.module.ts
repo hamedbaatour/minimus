@@ -8,7 +8,7 @@ import {SignupComponent} from './pages/signup/signup.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AppGuard} from './guards/app.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AppGuard]},
   {path: 'details/:city', component: DetailsComponent, canActivate: [AppGuard]},
   {path: 'add', component: AddComponent, canActivate: [AppGuard]},

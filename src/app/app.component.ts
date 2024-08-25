@@ -2,12 +2,15 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UiService} from './services/ui/ui.service';
 import {FbService} from './services/fb/fb.service';
 import {take} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NgClass, NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [NgClass, RouterLink, RouterLinkActive, NgIf, RouterOutlet, AsyncPipe]
 })
 export class AppComponent implements OnInit, OnDestroy {
   showMenu = false;

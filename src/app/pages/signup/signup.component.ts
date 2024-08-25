@@ -1,12 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
-import {Router} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {first} from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.css'],
+    standalone: true,
+    imports: [FormsModule, RouterLink, ErrorComponent]
 })
 export class SignupComponent implements OnInit {
   errorMessage;

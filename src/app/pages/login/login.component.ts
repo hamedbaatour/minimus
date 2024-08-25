@@ -1,12 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
 import {first, tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: true,
+    imports: [FormsModule, RouterLink, ErrorComponent]
 })
 export class LoginComponent implements OnInit {
   errorMessage = '';

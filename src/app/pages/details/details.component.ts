@@ -1,15 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {WeatherService} from '../../services/weather/weather.service';
 import {forkJoin, Observable, Subscription} from 'rxjs';
 import {UiService} from '../../services/ui/ui.service';
 import {concatMap} from 'rxjs/operators';
 import {TwitterService} from '../../services/twitter/twitter.service';
+import { NgClass, NgSwitch, NgIf, NgFor, NgSwitchCase, AsyncPipe, KeyValuePipe } from '@angular/common';
+import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+    selector: 'app-details',
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.css'],
+    standalone: true,
+    imports: [NgClass, RouterLink, NgSwitch, NgIf, NgFor, NgSwitchCase, ErrorComponent, AsyncPipe, KeyValuePipe]
 })
 export class DetailsComponent implements OnInit, OnDestroy {
 
@@ -20,7 +24,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   hum: number;
   wind: number;
   today: string;
-  daysForecast: any;
+  daysForecast: Record<any, { state: string, temp: any }>;
   cityIllustrationPath: string;
   sub1: Subscription;
   sub2: Subscription;
@@ -32,7 +36,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.sub1 = this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
     });
@@ -86,7 +89,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         dates[day].temp = Math.round(dates[day].temp / dates[day].counter);
       });
       delete dates[Object.keys(dates)[0]];
-      this.daysForecast = dates;
+      this.daysForecast = dates as Record<any, { state: string, temp: any }>;
     }, (err) => {
       this.errorMessage = err.error.message;
       setTimeout(() => {
@@ -101,5 +104,4 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
   }
-
 }
