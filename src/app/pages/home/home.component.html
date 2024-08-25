@@ -1,4 +1,6 @@
 <div class="main__container">
-  <app-weather-card *ngFor="let city of cities | async;" [city]="city?.name"></app-weather-card>
+  @for (city of cities | async; track city) {
+    <app-weather-card [city]="city?.name"></app-weather-card>
+  }
   <app-add-card></app-add-card>
 </div>

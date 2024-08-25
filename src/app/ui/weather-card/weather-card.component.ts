@@ -5,7 +5,7 @@ import {UiService} from '../../services/ui/ui.service';
 import {Subscription} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {FbService} from '../../services/fb/fb.service';
-import { NgIf, NgClass, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ErrorComponent } from '../error/error.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { ErrorComponent } from '../error/error.component';
     templateUrl: './weather-card.component.html',
     styleUrls: ['./weather-card.component.css'],
     standalone: true,
-    imports: [NgIf, NgClass, NgSwitch, NgSwitchCase, ErrorComponent]
+    imports: [NgClass, ErrorComponent]
 })
 export class WeatherCardComponent implements OnInit, OnDestroy {
 

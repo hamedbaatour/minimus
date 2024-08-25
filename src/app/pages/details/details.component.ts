@@ -5,7 +5,7 @@ import {forkJoin, Observable, Subscription} from 'rxjs';
 import {UiService} from '../../services/ui/ui.service';
 import {concatMap} from 'rxjs/operators';
 import {TwitterService} from '../../services/twitter/twitter.service';
-import { NgClass, NgSwitch, NgIf, NgFor, NgSwitchCase, AsyncPipe, KeyValuePipe } from '@angular/common';
+import { NgClass, AsyncPipe, KeyValuePipe } from '@angular/common';
 import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { ErrorComponent } from '../../ui/error/error.component';
     templateUrl: './details.component.html',
     styleUrls: ['./details.component.css'],
     standalone: true,
-    imports: [NgClass, RouterLink, NgSwitch, NgIf, NgFor, NgSwitchCase, ErrorComponent, AsyncPipe, KeyValuePipe]
+    imports: [NgClass, RouterLink, ErrorComponent, AsyncPipe, KeyValuePipe]
 })
 export class DetailsComponent implements OnInit, OnDestroy {
 

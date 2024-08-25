@@ -5,7 +5,7 @@ import {FbService} from '../../services/fb/fb.service';
 import {first} from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { NguiAutoCompleteModule } from 'ngxui-auto-complete';
-import { NgIf, NgSwitch, NgSwitchCase, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { WeatherCardComponent } from '../../ui/weather-card/weather-card.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { WeatherCardComponent } from '../../ui/weather-card/weather-card.compone
     templateUrl: './add.component.html',
     styleUrls: ['./add.component.css'],
     standalone: true,
-    imports: [FormsModule, NguiAutoCompleteModule, NgIf, WeatherCardComponent, NgSwitch, NgSwitchCase, NgClass]
+    imports: [FormsModule, NguiAutoCompleteModule, WeatherCardComponent, NgClass]
 })
 export class AddComponent implements OnInit, OnDestroy {
 

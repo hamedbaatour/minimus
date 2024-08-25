@@ -3,14 +3,14 @@ import {UiService} from './services/ui/ui.service';
 import {FbService} from './services/fb/fb.service';
 import {take} from 'rxjs/operators';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { NgClass, NgIf, AsyncPipe } from '@angular/common';
+import { NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [NgClass, RouterLink, RouterLinkActive, NgIf, RouterOutlet, AsyncPipe]
+    imports: [NgClass, RouterLink, RouterLinkActive, RouterOutlet, AsyncPipe]
 })
 export class AppComponent implements OnInit, OnDestroy {
   showMenu = false;

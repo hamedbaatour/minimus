@@ -2,14 +2,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UiService} from '../../services/ui/ui.service';
 import {Subscription} from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-add-card',
     templateUrl: './add-card.component.html',
     styleUrls: ['./add-card.component.css'],
     standalone: true,
-    imports: [RouterLink, NgClass, NgIf]
+    imports: [RouterLink, NgClass]
 })
 export class AddCardComponent implements OnInit, OnDestroy {
 
