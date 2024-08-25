@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 
 import {HomeComponent} from './pages/home/home.component';
 import {DetailsComponent} from './pages/details/details.component';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import {WeatherCardComponent} from './ui/weather-card/weather-card.component';
 import {AddCardComponent} from './ui/add-card/add-card.component';
 import {AddComponent} from './pages/add/add.component';
@@ -36,15 +36,15 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
     provideFirebaseApp(() => initializeApp(environment.config)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideHttpClient(),
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     NguiAutoCompleteModule,
-    FormsModule,
+    FormsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
