@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
 import {first, tap} from 'rxjs/operators';
 import { Router, RouterLink } from '@angular/router';
@@ -13,9 +13,10 @@ import { ErrorComponent } from '../../ui/error/error.component';
     imports: [FormsModule, RouterLink, ErrorComponent]
 })
 export class LoginComponent implements OnInit {
+  fb = inject(FbService);
+  router = inject(Router);
+
   errorMessage = '';
-  constructor(public fb: FbService, public router: Router) {
-  }
 
   ngOnInit() {
   }

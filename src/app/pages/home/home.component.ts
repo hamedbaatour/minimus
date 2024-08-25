@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
 import { AsyncPipe } from '@angular/common';
 import { WeatherCardComponent } from '../../ui/weather-card/weather-card.component';
@@ -11,13 +11,7 @@ import { AddCardComponent } from '../../ui/add-card/add-card.component';
     standalone: true,
     imports: [WeatherCardComponent, AddCardComponent, AsyncPipe]
 })
-export class HomeComponent implements OnInit {
-  cities;
-
-  constructor(public fb: FbService) {
-  }
-
-  ngOnInit() {
-    this.cities = this.fb.getCities();
-  }
+export class HomeComponent {
+  fb = inject(FbService);
+  cities = this.fb.getCities();
 }

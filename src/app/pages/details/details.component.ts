@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {WeatherService} from '../../services/weather/weather.service';
 import {forkJoin, Observable, Subscription} from 'rxjs';
@@ -16,6 +16,10 @@ import { ErrorComponent } from '../../ui/error/error.component';
     imports: [NgClass, RouterLink, ErrorComponent, AsyncPipe, KeyValuePipe]
 })
 export class DetailsComponent implements OnInit, OnDestroy {
+  twitter = inject(TwitterService);
+  activeRouter = inject(ActivatedRoute);
+  weather = inject(WeatherService);
+  ui = inject(UiService);
 
   darkMode: boolean;
   city: string;
@@ -30,10 +34,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   sub2: Subscription;
   errorMessage: string;
   tweets$: Observable<any>;
-
-  constructor(public twitter: TwitterService, public activeRouter: ActivatedRoute, public weather: WeatherService, public ui: UiService) {
-
-  }
 
   ngOnInit() {
     this.sub1 = this.ui.darkModeState.subscribe((isDark) => {

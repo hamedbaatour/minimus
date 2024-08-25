@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {UiService} from '../../services/ui/ui.service';
 import {Subscription} from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -12,12 +12,10 @@ import { NgClass } from '@angular/common';
     imports: [RouterLink, NgClass]
 })
 export class AddCardComponent implements OnInit, OnDestroy {
+  ui = inject(UiService);
 
   darkMode: boolean;
   sub1: Subscription;
-
-  constructor(public ui: UiService) {
-  }
 
   ngOnInit() {
     this.sub1 = this.ui.darkModeState.subscribe((isDark) => {

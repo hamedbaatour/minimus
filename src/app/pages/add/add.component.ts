@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {WeatherService} from '../../services/weather/weather.service';
 import {FbService} from '../../services/fb/fb.service';
@@ -16,6 +16,9 @@ import { WeatherCardComponent } from '../../ui/weather-card/weather-card.compone
     imports: [FormsModule, NguiAutoCompleteModule, WeatherCardComponent, NgClass]
 })
 export class AddComponent implements OnInit, OnDestroy {
+  http = inject(HttpClient);
+  weather = inject(WeatherService);
+  fb = inject(FbService);
 
   temp: number;
   city = 'Rome';
@@ -26,10 +29,6 @@ export class AddComponent implements OnInit, OnDestroy {
   showNote = false;
   followedCM = false;
   sub1;
-
-
-  constructor(public http: HttpClient, public weather: WeatherService, public fb: FbService) {
-  }
 
   ngOnInit() {
     // getting the city placeID

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
 import { Router, RouterLink } from '@angular/router';
 import {first} from 'rxjs/operators';
@@ -13,10 +13,10 @@ import { ErrorComponent } from '../../ui/error/error.component';
     imports: [FormsModule, RouterLink, ErrorComponent]
 })
 export class SignupComponent implements OnInit {
-  errorMessage;
+  fb = inject(FbService);
+  router = inject(Router);
 
-  constructor(public fb: FbService, public router: Router) {
-  }
+  errorMessage;
 
   ngOnInit() {
   }

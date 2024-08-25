@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {UiService} from './services/ui/ui.service';
 import {FbService} from './services/fb/fb.service';
 import {take} from 'rxjs/operators';
@@ -13,14 +13,13 @@ import { NgClass, AsyncPipe } from '@angular/common';
     imports: [NgClass, RouterLink, RouterLinkActive, RouterOutlet, AsyncPipe]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  ui = inject(UiService);
+  fb = inject(FbService);
+  router = inject(Router);
+
   showMenu = false;
   darkModeActive: boolean;
-
   userEmail = '';
-
-  constructor(public ui: UiService, public fb: FbService, public router: Router) {
-  }
-
   loggedIn = this.fb.isAuth();
   sub1;
 
@@ -51,5 +50,4 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/login');
     this.fb.signout();
   }
-
 }

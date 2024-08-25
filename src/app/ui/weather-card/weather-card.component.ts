@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import {Router} from '@angular/router';
 import {WeatherService} from '../../services/weather/weather.service';
 import {UiService} from '../../services/ui/ui.service';
@@ -16,6 +16,10 @@ import { ErrorComponent } from '../error/error.component';
     imports: [NgClass, ErrorComponent]
 })
 export class WeatherCardComponent implements OnInit, OnDestroy {
+  weather = inject(WeatherService);
+  router = inject(Router);
+  ui = inject(UiService);
+  fb = inject(FbService);
 
   @Input() set city(city: string) {
     this.cityName = city;
@@ -62,12 +66,6 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
   errorMessage: string;
   cityName;
   cityAdded = false;
-
-  constructor(public weather: WeatherService,
-              public router: Router,
-              public ui: UiService,
-              public fb: FbService) {
-  }
 
   ngOnInit() {
     this.sub1 = this.ui.darkModeState.subscribe((isDark) => {

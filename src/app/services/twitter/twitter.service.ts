@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {filter, first, map} from 'rxjs/operators';
 
@@ -6,9 +6,8 @@ import {filter, first, map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TwitterService {
+  http = inject(HttpClient);
 
-  constructor(public http: HttpClient) {
-  }
   fetchTweets(city) {
     return this.http.post('https://us-central1-minimus-weather.cloudfunctions.net/tweets', {
       data: {q: `${city} Weather`}

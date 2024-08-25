@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
 import {FbService} from '../services/fb/fb.service';
 import {Observable} from 'rxjs';
@@ -8,8 +8,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard  {
-  constructor(public fb: FbService, public router: Router) {
-  }
+  fb = inject(FbService);
+  router = inject(Router);
 
   canActivate(
     route: ActivatedRouteSnapshot,
