@@ -81,15 +81,15 @@
 }
 
 .slide-menu-active-dark {
-  background-color: #2B244D;
+  background-color: #2b244d;
 }
 
 .menu-header {
-  background: linear-gradient(to right, #00FF9B, #5f84fb);
+  background: linear-gradient(to right, #00ff9b, #5f84fb);
   display: grid;
   grid-template-rows: 1fr 4fr;
   grid-template-columns: 1fr 4fr;
-  grid-template-areas: "greeting greeting" "image details";
+  grid-template-areas: 'greeting greeting' 'image details';
   box-sizing: border-box;
   width: 100%;
   align-content: center;
@@ -144,8 +144,8 @@
 }
 
 .link-active {
-  color: #495CFC;
-  border-bottom: 1px solid #495CFC;
+  color: #495cfc;
+  border-bottom: 1px solid #495cfc;
 }
 
 .menu-link {
@@ -185,11 +185,13 @@
   margin: 0;
   min-height: 4rem;
   align-items: center;
-  animation: slidedown 0.5s ease-in-out, fadein 1s ease-in-out;
+  animation:
+    slidedown 0.5s ease-in-out,
+    fadein 1s ease-in-out;
 }
 
 .main__header-dark {
-  background-color: #2B244D;
+  background-color: #2b244d;
   color: white;
 }
 
@@ -221,9 +223,9 @@
 }
 
 .mode-toggle__circle {
-  height: 1.30rem;
-  width: 1.30rem;
-  background-color: #2B244D;
+  height: 1.3rem;
+  width: 1.3rem;
+  background-color: #2b244d;
   position: absolute;
   top: -0.18rem;
   border-radius: 50%;
@@ -238,7 +240,7 @@
 }
 
 .mode-toggle__bg-checked {
-  background-color: #FF0070;
+  background-color: #ff0070;
 }
 
 .mode-toggle__text {
@@ -278,7 +280,7 @@
 }
 
 .logo__text {
-  fill: #2B244D;
+  fill: #2b244d;
 }
 
 .logo__text-dark {
@@ -286,7 +288,7 @@
 }
 
 .hamburger__icon__fill {
-  fill: #2B244D;
+  fill: #2b244d;
 }
 
 .hamburger__icon__fill-dark {
@@ -349,6 +351,3 @@
     width: 100%;
   }
 }
-
-
-

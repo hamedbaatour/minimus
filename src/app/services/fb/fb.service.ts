@@ -1,8 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {filter, first, map, switchMap} from 'rxjs/operators';
-import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user} from "@angular/fire/auth";
-import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
-import {from, Observable} from "rxjs";
+import { inject, Injectable } from '@angular/core';
+import { filter, first, map, switchMap } from 'rxjs/operators';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { from, Observable } from 'rxjs';
 
 interface User {
   email: string;
@@ -19,14 +19,14 @@ interface City {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FbService {
   private auth: Auth = inject(Auth);
   private firestore = inject(Firestore);
 
   userEmail(): Observable<string | null> {
-    return user(this.auth).pipe(map(x => isUser(x) ? x.email : null));
+    return user(this.auth).pipe(map(x => (isUser(x) ? x.email : null)));
   }
 
   isAuth() {
@@ -56,7 +56,12 @@ export class FbService {
   addCity(name: string) {
     return user(this.auth).pipe(
       map(x => (x as User).uid),
-      switchMap((uid) => addDoc(collection(this.firestore, `${uid}/${name}`), {name, added: new Date().toISOString()})),
+      switchMap(uid =>
+        addDoc(collection(this.firestore, `${uid}/${name}`), {
+          name,
+          added: new Date().toISOString(),
+        })
+      ),
       first()
     );
   }

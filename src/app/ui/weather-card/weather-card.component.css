@@ -16,7 +16,9 @@ Weather Card Styling
   cursor: pointer;
   background-color: white;
   border-radius: 1.75rem;
-  animation: slideup 1s ease-in-out, fadein 1.25s ease-in-out 0ms 1;
+  animation:
+    slideup 1s ease-in-out,
+    fadein 1.25s ease-in-out 0ms 1;
 }
 
 .weather__card-add {
@@ -28,7 +30,7 @@ Weather Card Styling
 
 .weather__card-dark {
   /*background: linear-gradient(to bottom, #711B86, #00057A);*/
-background: linear-gradient(to bottom, #372865, #000000);
+  background: linear-gradient(to bottom, #372865, #000000);
   color: white;
 }
 
@@ -59,14 +61,16 @@ background: linear-gradient(to bottom, #372865, #000000);
   align-items: center;
 }
 
-.min__container, .max__container {
+.min__container,
+.max__container {
   margin: 1rem 3rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
 }
 
-.min-arrow__icon, .max-arrow__icon {
+.min-arrow__icon,
+.max-arrow__icon {
   height: 1.25rem;
   margin: auto;
 }
@@ -84,19 +88,21 @@ background: linear-gradient(to bottom, #372865, #000000);
 }
 
 .max__text {
-  color: #FF0070;
+  color: #ff0070;
 }
 
 .min__text {
-  color: #00FF9B;
+  color: #00ff9b;
 }
 
-.max__text, .min__text {
+.max__text,
+.min__text {
   font-size: 1rem;
   text-align: center;
 }
 
-.max-temperature__text, .min-temperature__text {
+.max-temperature__text,
+.min-temperature__text {
   text-align: center;
   font-size: 2rem;
 }
@@ -138,6 +144,6 @@ background: linear-gradient(to bottom, #372865, #000000);
   width: 100%;
 }
 
-.add-success-text{
+.add-success-text {
   font-size: 1.25rem;
 }

@@ -1,9 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {map} from 'rxjs/operators';
-
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
 
 export interface MainWeather {
   temp: number;
@@ -31,7 +30,7 @@ export interface ForecastResult {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeatherService {
   http = inject(HttpClient);
@@ -41,13 +40,12 @@ export class WeatherService {
   private readonly appID = environment.appID;
 
   getWeather(city: string, metric: 'metric' | 'imperial' = 'metric'): Observable<Weather> {
-    return this.http.get<Weather>(
-      `${this.baseURL}${city}&units=${metric}&APPID=${this.appID}`);
+    return this.http.get<Weather>(`${this.baseURL}${city}&units=${metric}&APPID=${this.appID}`);
   }
 
   getForecast(city: string, metric: 'metric' | 'imperial' = 'metric'): Observable<Forecast[]> {
-    return this.http.get<ForecastResult>(
-      `${this.forcastURL}${city}&units=${metric}&APPID=${this.appID}`)
-      .pipe(map((weather) => weather.list));
+    return this.http
+      .get<ForecastResult>(`${this.forcastURL}${city}&units=${metric}&APPID=${this.appID}`)
+      .pipe(map(weather => weather.list));
   }
 }

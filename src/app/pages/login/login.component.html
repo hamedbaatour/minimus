@@ -1,32 +1,40 @@
 <div class="main__container">
   <div class="login-card">
-
     <main class="login-content">
       <span class="login-header">Login</span>
       <!-- login form -->
 
       <form class="login-form" (ngSubmit)="login($event)" #authform="ngForm">
-        <input ngModel type="email" placeholder="Email" name="email" class="login-input" required>
-        <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="6"
-               required>
-        <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid"
-               [disabled]="!authform.form.valid">
+        <input ngModel type="email" placeholder="Email" name="email" class="login-input" required />
+        <input
+          ngModel
+          type="password"
+          placeholder="Password"
+          name="password"
+          class="login-input"
+          minlength="6"
+          required />
+        <input
+          type="submit"
+          name="submit"
+          value="Login"
+          class="login-btn"
+          [class.btn-disabled]="!authform.form.valid"
+          [disabled]="!authform.form.valid" />
       </form>
       <div class="signup-link-wrapper">
         <span class="signup-notice">Don't have an account?</span>
         <a class="signup-link" routerLink="/signup">Sign up</a>
       </div>
-
     </main>
 
     <!-- linking to signup -->
     <aside class="login-aside">
       <div class="login-aside-overlay"></div>
       <h1 class="login-welcome-text">Welcome Back!</h1>
-      <hr class="login-aside-hr">
+      <hr class="login-aside-hr" />
     </aside>
   </div>
 </div>
-
 
 <app-error [message]="errorMessage"></app-error>

@@ -1,10 +1,10 @@
-import {inject} from '@angular/core';
-import {CanActivateFn, Router} from '@angular/router';
-import {FbService} from '../services/fb/fb.service';
-import {map} from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { FbService } from '../services/fb/fb.service';
+import { map } from 'rxjs/operators';
 
 export const authGuard: CanActivateFn = () => {
   const fb = inject(FbService);
   const router = inject(Router);
-  return fb.isAuth().pipe(map(auth => !auth ? true : router.createUrlTree(['/'])));
-}
+  return fb.isAuth().pipe(map(auth => (!auth ? true : router.createUrlTree(['/']))));
+};

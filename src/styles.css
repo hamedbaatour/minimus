@@ -39,7 +39,6 @@ body {
   to {
     transform: translateY(0);
   }
-
 }
 
 @keyframes slideup {
@@ -49,7 +48,6 @@ body {
   to {
     transform: translateY(0);
   }
-
 }
 
 @keyframes slideright {
@@ -59,7 +57,6 @@ body {
   to {
     transform: translateX(0);
   }
-
 }
 
 @keyframes scaleup {
@@ -69,7 +66,6 @@ body {
   to {
     transform: scale(1);
   }
-
 }
 
 @keyframes scaleup-circle {
@@ -81,5 +77,4 @@ body {
     transform-origin: center;
     transform: scale(1) translateY(-50%) rotate(360deg);
   }
-
 }

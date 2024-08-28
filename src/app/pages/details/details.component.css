@@ -1,5 +1,5 @@
 .details-page__wrapper {
-  background: linear-gradient(to top, #86DBFF 0%, #e0c3fc 100%);
+  background: linear-gradient(to top, #86dbff 0%, #e0c3fc 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .details-page__wrapper-dark {
-  background: linear-gradient(#FC7DB8, #495CFC);
+  background: linear-gradient(#fc7db8, #495cfc);
 }
 
 .background-gradient__circle {
@@ -22,15 +22,14 @@
   height: 100rem;
   width: 100rem;
   border-radius: 50%;
-  background: linear-gradient(-225deg, #ffffff 0%, #FFE29F 10%, #FFA99F 48%, #ffd1ff 100%);
+  background: linear-gradient(-225deg, #ffffff 0%, #ffe29f 10%, #ffa99f 48%, #ffd1ff 100%);
   animation: scaleup-circle 900ms ease-in-out forwards;
   transition: background 1s ease-in-out;
-
 }
 
 .background-gradient__circle-dark {
   transition: background 1s ease-in-out;
-  background: linear-gradient(to bottom, #FF8B8B, #6676FF);
+  background: linear-gradient(to bottom, #ff8b8b, #6676ff);
 }
 
 .main-weather__card {
@@ -42,7 +41,9 @@
   z-index: 3;
   justify-items: center;
   opacity: 0;
-  animation: scaleup 1s ease-out 300ms, fadein 1.25s ease-out 300ms forwards;
+  animation:
+    scaleup 1s ease-out 300ms,
+    fadein 1.25s ease-out 300ms forwards;
 }
 
 .card-header__container-dark {
@@ -79,7 +80,6 @@
   grid-template-rows: 1fr;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-
 }
 
 .temperature__text {
@@ -145,14 +145,16 @@
   background-color: white;
 }
 
-.hum__text, .wind__text {
+.hum__text,
+.wind__text {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-size: 0.8rem;
   margin-bottom: 1rem;
 }
 
-.hum__container, .wind__container {
+.hum__container,
+.wind__container {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -216,7 +218,6 @@
   }
 }
 
-
 .twitter-no-tweets__text {
   margin-top: 3rem;
   text-align: center;
@@ -247,7 +248,6 @@
   width: 100%;
 }
 
-
 .twitter-tweet__container {
   margin-top: 2rem;
 }
@@ -270,7 +270,7 @@
 }
 
 .tweet__text {
-  margin-top: 0
+  margin-top: 0;
 }
 
 .day-weather__container {
@@ -306,7 +306,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  color: #2B244D;
+  color: #2b244d;
 }
 
 /* Media Query:   LT-XL   */
@@ -334,7 +334,6 @@
 
 /* Media Query:   LT-MD   */
 @media screen and (max-width: 959px) {
-
   .header-content__wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
@@ -349,13 +348,12 @@
     flex-flow: column;
   }
 
-  .hum-wind__container, .temp-state__container {
+  .hum-wind__container,
+  .temp-state__container {
     margin: 0 auto;
   }
 
   .city-name__container {
     padding-bottom: 0;
   }
-
 }
-
