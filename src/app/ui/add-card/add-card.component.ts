@@ -2,29 +2,17 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {UiService} from '../../services/ui/ui.service';
 import {Subscription} from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { NgClass } from '@angular/common';
+import {AsyncPipe, NgClass} from '@angular/common';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
-    selector: 'app-add-card',
-    templateUrl: './add-card.component.html',
-    styleUrls: ['./add-card.component.css'],
-    standalone: true,
-    imports: [RouterLink, NgClass]
+  selector: 'app-add-card',
+  templateUrl: './add-card.component.html',
+  styleUrls: ['./add-card.component.css'],
+  standalone: true,
+  imports: [RouterLink, NgClass, AsyncPipe]
 })
-export class AddCardComponent implements OnInit, OnDestroy {
+export class AddCardComponent {
   ui = inject(UiService);
-
-  darkMode: boolean;
-  sub1: Subscription;
-
-  ngOnInit() {
-    this.sub1 = this.ui.darkModeState.subscribe((isDark) => {
-      this.darkMode = isDark;
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub1.unsubscribe();
-  }
-
+  darkMode$ = this.ui.darkModeState.pipe(takeUntilDestroyed());
 }

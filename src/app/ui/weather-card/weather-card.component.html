@@ -1,6 +1,6 @@
 @if (addMode ? !cityAdded && cityName : true) {
   <section class="weather__card" (click)="openDetails()"
-    [ngClass]="{'weather__card-dark': darkMode, 'weather__card-add': addMode}">
+    [ngClass]="{'weather__card-dark': darkMode$ | async, 'weather__card-add': addMode}">
     <span class="city-name__text">{{cityName}}</span>
     <div class="weather-icon__container">
       @switch (true) {

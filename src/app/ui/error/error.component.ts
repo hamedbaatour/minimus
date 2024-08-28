@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common';
 })
 export class ErrorComponent implements OnInit {
 
-  @Input() message: string;
+  @Input() message?: string;
   @Input() action = 'GOT IT';
 
   constructor() {

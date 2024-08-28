@@ -8,14 +8,14 @@ import {filter, first, map} from 'rxjs/operators';
 export class TwitterService {
   http = inject(HttpClient);
 
-  fetchTweets(city) {
-    return this.http.post('https://us-central1-minimus-weather.cloudfunctions.net/tweets', {
+  fetchTweets(city: string) {
+    return this.http.post<any>('https://us-central1-minimus-weather.cloudfunctions.net/tweets', {
       data: {q: `${city} Weather`}
     }).pipe(
       first(),
       map((res: any) => res && res.result ? res.result.statuses : []),
-      filter((tweets: any) => tweets.map(tweet => tweet.text && tweet.text.match(/weather/g))),
-      map((tweets: any) => tweets.map(tweet => ({
+      filter((tweets: any[]) => tweets.some(tweet => tweet.text && tweet.text.match(/weather/g))),
+      map((tweets: any[]) => tweets.map(tweet => ({
         text: tweet.text,
         date: tweet.created_at,
         user: {

@@ -7,6 +7,13 @@ import {concatMap} from 'rxjs/operators';
 import {TwitterService} from '../../services/twitter/twitter.service';
 import { NgClass, AsyncPipe, KeyValuePipe } from '@angular/common';
 import { ErrorComponent } from '../../ui/error/error.component';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+
+interface DetailInfo {
+  counter: number;
+  temp: number;
+  state: string;
+}
 
 @Component({
     selector: 'app-details',
@@ -21,57 +28,52 @@ export class DetailsComponent implements OnInit, OnDestroy {
   weather = inject(WeatherService);
   ui = inject(UiService);
 
-  darkMode: boolean;
-  city: string;
-  state: string;
-  temp: number;
-  hum: number;
-  wind: number;
-  today: string;
-  daysForecast: Record<any, { state: string, temp: any }>;
-  cityIllustrationPath: string;
-  sub1: Subscription;
-  sub2: Subscription;
-  errorMessage: string;
-  tweets$: Observable<any>;
+  darkMode$ = this.ui.darkModeState.pipe(takeUntilDestroyed());
+  city?: string;
+  state?: string;
+  temp?: number;
+  hum?: number;
+  wind?: number;
+  today?: string;
+  daysForecast?: Record<string, DetailInfo>;
+  cityIllustrationPath?: string;
+  sub2?: Subscription;
+  errorMessage?: string;
+  tweets$?: Observable<any>;
 
   ngOnInit() {
-    this.sub1 = this.ui.darkModeState.subscribe((isDark) => {
-      this.darkMode = isDark;
-    });
-
     const todayNumberInWeek = new Date().getDay();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     this.today = days[todayNumberInWeek];
     this.sub2 = this.activeRouter.paramMap.pipe(concatMap((route: any) => {
         this.city = route.params.city;
-        switch (this.city.toLowerCase()) {
+        switch (this.city!.toLowerCase()) {
           case 'paris':
-            this.cityIllustrationPath = '../../../assets/cities/france.svg';
+            this.cityIllustrationPath = 'cities/france.svg';
             break;
           case 'doha':
-            this.cityIllustrationPath = '../../assets/cities/qatar.svg';
+            this.cityIllustrationPath = 'cities/qatar.svg';
             break;
           case 'rabat':
-            this.cityIllustrationPath = '../../assets/cities/rabat.svg';
+            this.cityIllustrationPath = 'cities/rabat.svg';
             break;
           case 'tunis':
-            this.cityIllustrationPath = '../../assets/cities/tunis.svg';
+            this.cityIllustrationPath = 'cities/tunis.svg';
             break;
           case 'tokyo':
-            this.cityIllustrationPath = '../../assets/cities/japan.svg';
+            this.cityIllustrationPath = 'cities/japan.svg';
             break;
           default:
-            this.cityIllustrationPath = '../../assets/cities/default.svg';
+            this.cityIllustrationPath = 'cities/default.svg';
         }
-        return forkJoin(this.weather.getWeather(this.city), this.weather.getForecast(this.city));
+        return forkJoin(this.weather.getWeather(this.city!), this.weather.getForecast(this.city!));
       })
     ).subscribe((payload: any) => {
       this.state = payload[0].weather[0].main;
       this.temp = Math.ceil(Number(payload[0].main.temp));
       this.hum = payload[0].main.humidity;
       this.wind = Math.round(Math.round(payload[0].wind.speed));
-      const dates = {};
+      const dates: Record<string, {counter: number, temp: number, state: string}> = {};
       for (const res of payload[1]) {
         const date = new Date(res.dt_txt).toDateString().split(' ')[0];
         if (dates[date]) {
@@ -89,7 +91,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         dates[day].temp = Math.round(dates[day].temp / dates[day].counter);
       });
       delete dates[Object.keys(dates)[0]];
-      this.daysForecast = dates as Record<any, { state: string, temp: any }>;
+      this.daysForecast = dates;
     }, (err) => {
       this.errorMessage = err.error.message;
       setTimeout(() => {
@@ -97,11 +99,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
       }, 2500);
     });
 
-    this.tweets$ = this.twitter.fetchTweets(this.city);
+    this.tweets$ = this.twitter.fetchTweets(this.city!);
   }
 
   ngOnDestroy() {
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
+    this.sub2?.unsubscribe();
   }
 }

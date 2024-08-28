@@ -14,7 +14,7 @@
             auto-complete [(ngModel)]="selectedCity"
             (keyup.enter)="selectCity(input.value)"
             (ngModelChange)="selectCity(input.value)"
-            [source]="capitals" [max-num-list]="5" [close-on-focusout]="false" #input/>
+            [source]="capitals" max-num-list="5" [close-on-focusout]="false" #input/>
           <button class="search-city-btn" (click)="selectCity(input.value)">
             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
               <path fill="#FFF"

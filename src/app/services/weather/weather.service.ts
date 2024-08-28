@@ -17,28 +17,12 @@ export class WeatherService {
 
   getWeather(city: string, metric: 'metric' | 'imperial' = 'metric'): Observable<any> {
     return this.http.get(
-      `${this.baseURL}${city}&units=${metric}&APPID=${this.appID}`).pipe((first()));
+      `${this.baseURL}${city}&units=${metric}&APPID=${this.appID}`);
   }
 
   getForecast(city: string, metric: 'metric' | 'imperial' = 'metric'): Observable<any> {
-    return this.http.get(
+    return this.http.get<any>(
       `${this.forcastURL}${city}&units=${metric}&APPID=${this.appID}`)
-      .pipe(first(), map((weather) => weather['list']));
+      .pipe(map((weather) => weather.list));
   }
-
-  // [0].main
-  // getWeatherState
-  //
-  // getCurrentTemp
-  // Math.round(Number(weather.main.temp))
-  //
-  //
-  // getCurrentHum
-  // weather.main.humidity
-  //
-  //
-  // getCurrentWind
-  // Math.round(Math.round(weather.wind.speed))
-
-
 }

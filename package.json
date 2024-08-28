@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
@@ -30,15 +31,13 @@
     "@angular/compiler-cli": "^18.2.1",
     "@angular/language-service": "^18.2.1",
     "@types/node": "^12.11.1",
-    "@types/jasmine": "~3.6.0",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.2.0",
     "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "ts-node": "~7.0.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.5"
   }
 }

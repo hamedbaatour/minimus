@@ -1,21 +1,21 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {WeatherService} from '../../services/weather/weather.service';
 import {UiService} from '../../services/ui/ui.service';
-import {Subscription} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {FbService} from '../../services/fb/fb.service';
-import { NgClass } from '@angular/common';
-import { ErrorComponent } from '../error/error.component';
+import {AsyncPipe, NgClass} from '@angular/common';
+import {ErrorComponent} from '../error/error.component';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
-    selector: 'app-weather-card',
-    templateUrl: './weather-card.component.html',
-    styleUrls: ['./weather-card.component.css'],
-    standalone: true,
-    imports: [NgClass, ErrorComponent]
+  selector: 'app-weather-card',
+  templateUrl: './weather-card.component.html',
+  styleUrls: ['./weather-card.component.css'],
+  standalone: true,
+  imports: [NgClass, ErrorComponent, AsyncPipe]
 })
-export class WeatherCardComponent implements OnInit, OnDestroy {
+export class WeatherCardComponent {
   weather = inject(WeatherService);
   router = inject(Router);
   ui = inject(UiService);
@@ -54,28 +54,18 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
 
   }
 
-  @Input() addMode;
+  @Input() addMode?: boolean;
   @Output() cityStored = new EventEmitter();
-  citesWeather: Object;
-  darkMode: boolean;
-  sub1: Subscription;
-  state: string;
-  temp: number;
-  maxTemp: number;
-  minTemp: number;
-  errorMessage: string;
-  cityName;
+
+  citesWeather?: Object;
+  state?: string | null;
+  temp?: number | null;
+  maxTemp?: number | null;
+  minTemp?: number | null;
+  errorMessage?: string;
+  cityName?: string | null;
   cityAdded = false;
-
-  ngOnInit() {
-    this.sub1 = this.ui.darkModeState.subscribe((isDark) => {
-      this.darkMode = isDark;
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub1.unsubscribe();
-  }
+  darkMode$ = this.ui.darkModeState.pipe(takeUntilDestroyed());
 
   openDetails() {
     if (!this.addMode) {
@@ -84,6 +74,8 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
   }
 
   addCity() {
+    if (!this.cityName) return;
+
     this.fb.addCity(this.cityName).subscribe(() => {
       this.cityName = null;
       this.maxTemp = null;
@@ -95,6 +87,4 @@ export class WeatherCardComponent implements OnInit, OnDestroy {
       setTimeout(() => this.cityAdded = false, 2000);
     });
   }
-
-
 }

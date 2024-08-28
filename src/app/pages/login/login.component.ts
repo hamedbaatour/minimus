@@ -1,9 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FbService} from '../../services/fb/fb.service';
-import {first, tap} from 'rxjs/operators';
-import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { ErrorComponent } from '../../ui/error/error.component';
+import {first} from 'rxjs/operators';
+import {Router, RouterLink} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {ErrorComponent} from '../../ui/error/error.component';
 
 @Component({
     selector: 'app-login',
@@ -12,22 +12,20 @@ import { ErrorComponent } from '../../ui/error/error.component';
     standalone: true,
     imports: [FormsModule, RouterLink, ErrorComponent]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   fb = inject(FbService);
   router = inject(Router);
 
   errorMessage = '';
 
-  ngOnInit() {
+  login(e: Event) {
+    if (e.target instanceof HTMLFormElement && 'email' in e.target && 'password' in e.target && e.target['email'] instanceof HTMLInputElement && e.target['password'] instanceof HTMLInputElement) {
+      this.fb.signin(e.target['email'].value, e.target['password'].value).pipe(first()).subscribe(() => {
+        this.router.navigateByUrl('');
+      },(err) => {
+        this.errorMessage = err;
+        setTimeout(() => this.errorMessage = '', 2000);
+      });
+    }
   }
-
-  login(e) {
-    this.fb.signin(e.target.email.value, e.target.password.value).pipe(first()).subscribe(() => {
-      this.router.navigateByUrl('');
-    },(err) => {
-      this.errorMessage = err;
-      setTimeout(() => this.errorMessage = '', 2000);
-    });
-  }
-
 }

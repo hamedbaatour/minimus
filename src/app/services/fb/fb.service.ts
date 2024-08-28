@@ -2,7 +2,16 @@ import {inject, Injectable} from '@angular/core';
 import {filter, first, map, switchMap} from 'rxjs/operators';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user} from "@angular/fire/auth";
 import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
-import {from} from "rxjs";
+import {from, Observable} from "rxjs";
+
+interface User {
+  email: string;
+  uid: string;
+}
+
+function isUser(value: unknown): value is User {
+  return !!value && typeof value === 'object' && 'uid' in value && 'email' in value;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +20,19 @@ export class FbService {
   private auth: Auth = inject(Auth);
   private firestore = inject(Firestore);
 
-  userEmail() {
-    return user(this.auth).pipe(map(x => x?.email));
+  userEmail(): Observable<string | null> {
+    return user(this.auth).pipe(map(x => isUser(x) ? x.email : null));
   }
 
   isAuth() {
     return user(this.auth).pipe(map(x => !!x));
   }
 
-  signin(email, pass) {
+  signin(email: string, pass: string) {
     return from(signInWithEmailAndPassword(this.auth, email, pass));
   }
 
-  signup(email, pass) {
+  signup(email: string, pass: string) {
     return from(createUserWithEmailAndPassword(this.auth, email, pass));
   }
 
@@ -31,17 +40,17 @@ export class FbService {
     return from(signOut(this.auth));
   }
 
-  getCities() {
+  getCities(): Observable<any> {
     return user(this.auth).pipe(
-      map(x => x?.uid),
-      filter(x => !!x),
-      switchMap((uid) => collectionData(collection(this.firestore, uid)))
+      filter(isUser),
+      map(x => (x as User).uid),
+      switchMap((uid: string) => collectionData(collection(this.firestore, uid)))
     );
   }
 
   addCity(name: string) {
     return user(this.auth).pipe(
-      map(x => x.uid),
+      map(x => (x as User).uid),
       switchMap((uid) => addDoc(collection(this.firestore, `${uid}/${name}`), {name, added: new Date()})),
       first()
     );

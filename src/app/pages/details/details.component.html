@@ -1,5 +1,7 @@
-<div class="details-page__wrapper" [ngClass]="{'details-page__wrapper-dark': darkMode}">
-  <div class="background-gradient__circle" [ngClass]="{'background-gradient__circle-dark': darkMode}"></div>
+<img class="city__illustration" [src]="cityIllustrationPath"/>
+
+<div class="details-page__wrapper" [ngClass]="{'details-page__wrapper-dark': darkMode$ | async}">
+  <div class="background-gradient__circle" [ngClass]="{'background-gradient__circle-dark': darkMode$ | async}"></div>
   <svg class="back__button" routerLink="" viewBox="4085 152 98.5 126" tabindex="0">
     <defs>
       <style>.a {
