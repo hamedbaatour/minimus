@@ -1,7 +1,6 @@
 <!-- Slide Menu-->
-<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu()">
-  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu, 'slide-menu-active-dark': darkMode$ | async}"
-    (click)="$event.stopImmediatePropagation();">
+<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu(); $event.stopImmediatePropagation();" (keydown)="toggleMenu(); $event.stopImmediatePropagation();" tabindex="0">
+  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu, 'slide-menu-active-dark': darkMode$ | async}">
     <section class="menu-header" [ngClass]="{'menu-header-dark': darkMode$ | async}">
       <span class="greeting__text">Welcome Back</span>
       <div class="profile-image__container">
@@ -15,13 +14,12 @@
     </section>
     <section class="menu-body">
       <ul class="menu-links" [ngClass]="{'menu-links-dark': darkMode$ | async}">
-        <li class="menu-link" [routerLinkActiveOptions]="{exact:true}" routerLink="" routerLinkActive="link-active" (click)="toggleMenu()">Home</li>
-        <li class="menu-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/add" routerLinkActive="link-active" (click)="toggleMenu()">Add City</li>
-        <li (click)="logout()" class="menu-link">Logout</li>
+        <li class="menu-link" [routerLinkActiveOptions]="{exact:true}" routerLink="" routerLinkActive="link-active" (click)="toggleMenu()" (keydown)="toggleMenu()" tabindex="0">Home</li>
+        <li class="menu-link" [routerLinkActiveOptions]="{exact:true}" routerLink="/add" routerLinkActive="link-active" (click)="toggleMenu()" (keydown)="toggleMenu()" tabindex="0">Add City</li>
+        <li (click)="logout()" (keyup)="logout()" tabindex="0" class="menu-link">Logout</li>
       </ul>
     </section>
     <section class="menu-footer">
-
       <small class="copyright__text">Copyright © 2019 Minimus</small>
     </section>
   </nav>

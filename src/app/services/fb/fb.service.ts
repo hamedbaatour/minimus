@@ -13,6 +13,11 @@ function isUser(value: unknown): value is User {
   return !!value && typeof value === 'object' && 'uid' in value && 'email' in value;
 }
 
+interface City {
+  name: string;
+  added: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +45,7 @@ export class FbService {
     return from(signOut(this.auth));
   }
 
-  getCities(): Observable<any> {
+  getCities(): Observable<City> {
     return user(this.auth).pipe(
       filter(isUser),
       map(x => (x as User).uid),
@@ -51,7 +56,7 @@ export class FbService {
   addCity(name: string) {
     return user(this.auth).pipe(
       map(x => (x as User).uid),
-      switchMap((uid) => addDoc(collection(this.firestore, `${uid}/${name}`), {name, added: new Date()})),
+      switchMap((uid) => addDoc(collection(this.firestore, `${uid}/${name}`), {name, added: new Date().toISOString()})),
       first()
     );
   }

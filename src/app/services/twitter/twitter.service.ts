@@ -1,6 +1,33 @@
-import { Injectable, inject } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {filter, first, map} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
+import {Observable} from "rxjs";
+
+interface Status {
+  text: string;
+  created_at: string;
+  user: {
+    name: string;
+    profile_image_url_https: string;
+    screen_name: string;
+  }
+}
+
+interface TweetResponse {
+  result: {
+    statuses: Status[]
+  }
+}
+
+export interface Tweet {
+  text: string;
+  date: string;
+  user: {
+    name: string;
+    photo: string;
+    handle: string;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +35,13 @@ import {filter, first, map} from 'rxjs/operators';
 export class TwitterService {
   http = inject(HttpClient);
 
-  fetchTweets(city: string) {
-    return this.http.post<any>('https://us-central1-minimus-weather.cloudfunctions.net/tweets', {
+  fetchTweets(city: string): Observable<Tweet[]> {
+    return this.http.post<TweetResponse | null>('https://us-central1-minimus-weather.cloudfunctions.net/tweets', {
       data: {q: `${city} Weather`}
     }).pipe(
-      first(),
-      map((res: any) => res && res.result ? res.result.statuses : []),
-      filter((tweets: any[]) => tweets.some(tweet => tweet.text && tweet.text.match(/weather/g))),
-      map((tweets: any[]) => tweets.map(tweet => ({
+      map((res) => res?.result?.statuses ?? []),
+      filter((tweets) => tweets.some(tweet => tweet.text && tweet.text.match(/weather/g))),
+      map((tweets) => tweets.map(tweet => ({
         text: tweet.text,
         date: tweet.created_at,
         user: {
@@ -24,6 +50,6 @@ export class TwitterService {
           handle: tweet.user.screen_name
         }
       }))),
-      map((tweets: any) => tweets.slice(0, 4)));
+      map((tweets) => tweets.slice(0, 4)));
   }
 }

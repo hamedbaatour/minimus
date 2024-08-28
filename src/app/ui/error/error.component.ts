@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import { NgClass } from '@angular/common';
+import {Component, Input} from '@angular/core';
+import {NgClass} from '@angular/common';
 
 @Component({
     selector: 'app-error',
@@ -8,15 +8,7 @@ import { NgClass } from '@angular/common';
     standalone: true,
     imports: [NgClass]
 })
-export class ErrorComponent implements OnInit {
-
+export class ErrorComponent {
   @Input() message?: string;
   @Input() action = 'GOT IT';
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
 }

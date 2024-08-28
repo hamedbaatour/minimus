@@ -1,5 +1,3 @@
-<img class="city__illustration" [src]="cityIllustrationPath"/>
-
 <div class="details-page__wrapper" [ngClass]="{'details-page__wrapper-dark': darkMode$ | async}">
   <div class="background-gradient__circle" [ngClass]="{'background-gradient__circle-dark': darkMode$ | async}"></div>
   <svg class="back__button" routerLink="" viewBox="4085 152 98.5 126" tabindex="0">
@@ -40,7 +38,7 @@ letter-spacing: 0.4em;
 </svg>
 <section class="main-weather__card">
   <section class="card-header__container-dark">
-    <img class="city__illustration" [src]="cityIllustrationPath"/>
+    <img class="city__illustration" [src]="cityIllustrationPath" alt="Picture of city" />
     <div class="header-content__wrapper">
       <div class="today-weather__container">
         <!--{{today}}-->

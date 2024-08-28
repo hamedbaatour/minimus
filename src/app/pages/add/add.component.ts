@@ -9,6 +9,10 @@ import {NgClass} from '@angular/common';
 import {WeatherCardComponent} from '../../ui/weather-card/weather-card.component';
 import {Subscription} from "rxjs";
 
+interface Country {
+  capital: string;
+}
+
 @Component({
     selector: 'app-add',
     templateUrl: './add.component.html',
@@ -25,30 +29,30 @@ export class AddComponent implements OnInit, OnDestroy {
   city = 'Rome';
   state?: string;
   capitals: string[] = [];
-  selectedCity: string = '';
-  cardCity?: any;
+  selectedCity = '';
+  cardCity?: string;
   showNote = false;
   followedCM = false;
   sub1!: Subscription;
 
   ngOnInit() {
     // getting the city placeID
-    this.weather.getWeather(this.city).subscribe((payload: any) => {
+    this.weather.getWeather(this.city).subscribe((payload) => {
       this.state = payload.weather[0].main;
       this.temp = Math.ceil(Number(payload.main.temp));
     });
 
-    this.http.get<any[]>('https://restcountries.eu/rest/v2/all').pipe((first())).subscribe((countries: Array<any>) => {
-      countries.forEach((country: any) => {
+    this.http.get<Country[]>('https://restcountries.eu/rest/v2/all').pipe((first())).subscribe((countries) => {
+      countries.forEach((country) => {
         if (country.capital.length) {
-          this.capitals.push(country.capital as string);
+          this.capitals.push(country.capital);
         }
       });
       this.capitals.sort();
     });
 
-    this.sub1 = this.fb.getCities().subscribe((cities: any) => {
-      Object.values(cities).forEach((city: any) => {
+    this.sub1 = this.fb.getCities().subscribe((cities) => {
+      Object.values(cities).forEach((city) => {
         if (city.name === 'Rome') {
           this.followedCM = true;
         }

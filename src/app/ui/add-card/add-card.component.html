@@ -3,7 +3,7 @@
     <span class="card__title">Add city</span>
   </div>
   <div class="body__container">
-    @if (!(darkMode$ | async)) {
+    @if ((darkMode$ | async) === false) {
       <svg class="add__icon" id="Plus_Icon" data-name="Plus Icon" viewBox="1454.4 326.4 209.1 209.1">
         <defs>
           <style>
@@ -58,7 +58,7 @@
       </g>
     </svg>
   }
-  @if (!(darkMode$ | async)) {
+  @if ((darkMode$ | async) === false) {
     <svg class="city__illustration" id="City_Illustration" data-name="City Illustration"
       viewBox="1367.8 616.6 403.6 331.4">
       <defs>

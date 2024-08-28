@@ -6,7 +6,7 @@
       <!-- login form -->
 
       <form class="login-form" (ngSubmit)="login($event)" #authform="ngForm">
-        <input ngModel type="email" autofocus placeholder="Email" name="email" class="login-input" required>
+        <input ngModel type="email" placeholder="Email" name="email" class="login-input" required>
         <input ngModel type="password" placeholder="Password" name="password" class="login-input" minlength="6"
                required>
         <input type="submit" name="submit" value="Login" class="login-btn" [class.btn-disabled]="!authform.form.valid"

@@ -16,7 +16,7 @@ export class SignupComponent {
   fb = inject(FbService);
   router = inject(Router);
 
-  errorMessage?: any;
+  errorMessage?: string;
 
   signup(e: Event) {
     if (e.target instanceof HTMLFormElement && 'email' in e.target && 'password' in e.target && e.target['email'] instanceof HTMLInputElement && e.target['password'] instanceof HTMLInputElement) {

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {UiService} from '../../services/ui/ui.service';
-import {Subscription} from 'rxjs';
-import { RouterLink } from '@angular/router';
+import {RouterLink} from '@angular/router';
 import {AsyncPipe, NgClass} from '@angular/common';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 

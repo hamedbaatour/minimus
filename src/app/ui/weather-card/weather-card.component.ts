@@ -57,7 +57,7 @@ export class WeatherCardComponent {
   @Input() addMode?: boolean;
   @Output() cityStored = new EventEmitter();
 
-  citesWeather?: Object;
+  citesWeather?: object;
   state?: string | null;
   temp?: number | null;
   maxTemp?: number | null;
