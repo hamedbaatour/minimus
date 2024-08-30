@@ -1,44 +1,68 @@
-import {Injectable} from '@angular/core';
-import {AngularFireLiteAuth, AngularFireLiteFirestore} from 'angularfire-lite';
-import {first, switchMap} from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { filter, first, map, switchMap } from 'rxjs/operators';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { from, Observable } from 'rxjs';
+
+interface User {
+  email: string;
+  uid: string;
+}
+
+function isUser(value: unknown): value is User {
+  return !!value && typeof value === 'object' && 'uid' in value && 'email' in value;
+}
+
+interface City {
+  name: string;
+  added: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FbService {
+  private auth: Auth = inject(Auth);
+  private firestore = inject(Firestore);
 
-  constructor(public auth: AngularFireLiteAuth, public fs: AngularFireLiteFirestore) {
+  userEmail(): Observable<string | null> {
+    return user(this.auth).pipe(map(x => (isUser(x) ? x.email : null)));
   }
 
   isAuth() {
-    return this.auth.isAuthenticated();
+    return user(this.auth).pipe(map(x => !!x));
   }
 
-  signin(email, pass) {
-    return this.auth.signin(email, pass);
+  signin(email: string, pass: string) {
+    return from(signInWithEmailAndPassword(this.auth, email, pass));
   }
 
-  signup(email, pass) {
-    return this.auth.signup(email, pass);
+  signup(email: string, pass: string) {
+    return from(createUserWithEmailAndPassword(this.auth, email, pass));
   }
 
+  signout() {
+    return from(signOut(this.auth));
+  }
 
-  getCities() {
-    return this.auth.uid().pipe(switchMap((uid) => {
-      return this.fs.read(`${uid}`);
-    }));
+  getCities(): Observable<City> {
+    return user(this.auth).pipe(
+      filter(isUser),
+      map(x => (x as User).uid),
+      switchMap((uid: string) => collectionData(collection(this.firestore, uid)))
+    );
   }
 
   addCity(name: string) {
-    return this.auth.uid()
-      .pipe(switchMap((uid) => {
-        return this.fs
-          .write(`${uid}/${name}`, {name, added: new Date()})
-          .pipe(first());
-      }), first());
+    return user(this.auth).pipe(
+      map(x => (x as User).uid),
+      switchMap(uid =>
+        addDoc(collection(this.firestore, `${uid}/${name}`), {
+          name,
+          added: new Date().toISOString(),
+        })
+      ),
+      first()
+    );
   }
-
 }
-
-
-

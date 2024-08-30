@@ -11,12 +11,14 @@
   justify-items: center;
   cursor: pointer;
   border-radius: 1.75rem;
-  animation: slideup 1s ease-in-out, fadein 1.5s ease-in-out 0ms 1;
+  animation:
+    slideup 1s ease-in-out,
+    fadein 1.5s ease-in-out 0ms 1;
   color: #443282;
 }
 
 .add__card-dark {
-  background: linear-gradient(to bottom, #711B86, #00057A);
+  background: linear-gradient(to bottom, #711b86, #00057a);
   color: white;
 }
 

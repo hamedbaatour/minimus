@@ -1,30 +1,36 @@
-<div class="details-page__wrapper" [ngClass]="{'details-page__wrapper-dark': darkMode}">
-  <div class="background-gradient__circle" [ngClass]="{'background-gradient__circle-dark': darkMode}"></div>
+<div class="details-page__wrapper" [ngClass]="{ 'details-page__wrapper-dark': darkMode$ | async }">
+  <div class="background-gradient__circle" [ngClass]="{ 'background-gradient__circle-dark': darkMode$ | async }"></div>
   <svg class="back__button" routerLink="" viewBox="4085 152 98.5 126" tabindex="0">
     <defs>
-      <style>.a {
-        fill: #2b244d;
-      }
+      <style>
+        .a {
+          fill: #2b244d;
+        }
 
-      .b {
-        fill: rgba(0, 0, 0, 0);
-      }
+        .b {
+          fill: rgba(0, 0, 0, 0);
+        }
 
-      .b, .c {
-        stroke: #fff;
-        stroke-width: 2px;
-      }
+        .b,
+        .c {
+          stroke: #fff;
+          stroke-width: 2px;
+        }
 
-      .c {
-        fill: none;
-      }
+        .c {
+          fill: none;
+        }
 
-      .d {
-        fill: #fff;
-        font-size: 15px;
-        font-family: SegoeUI, Segoe UI, sans-serif;
-        letter-spacing: 0.4em;
-      }</style>
+        .d {
+          fill: #fff;
+          font-size: 15px;
+          font-family:
+            SegoeUI,
+            Segoe UI,
+            sans-serif;
+          letter-spacing: 0.4em;
+        }
+      </style>
     </defs>
     <g transform="translate(3980)">
       <circle class="a" cx="39" cy="39" r="39" transform="translate(105 152)"></circle>
@@ -37,30 +43,30 @@
     </g>
   </svg>
   <section class="main-weather__card">
-    <section class="card-header__container-dark" [ngSwitch]="true">
-      <img class="city__illustration" [src]="cityIllustrationPath"/>
+    <section class="card-header__container-dark">
+      <img class="city__illustration" [src]="cityIllustrationPath" alt="Picture of city" />
       <div class="header-content__wrapper">
         <div class="today-weather__container">
           <!--{{today}}-->
           <div class="temp-state__container">
-            <span class="temperature__text">{{temp}}°</span>
-            <span class="weather-state__text">{{state}}</span>
+            <span class="temperature__text">{{ temp }}°</span>
+            <span class="weather-state__text">{{ state }}</span>
           </div>
           <div class="hum-wind__container">
             <div class="hum__container">
               <span class="hum__text">humidity</span>
-              <span class="hum-value__text">{{hum}} %</span>
+              <span class="hum-value__text">{{ hum }} %</span>
             </div>
             <div class="hum-wind__separator">&nbsp;</div>
             <div class="wind__container">
               <span class="wind__text">wind</span>
-              <span class="wind-value__text">{{wind}} K/M</span>
+              <span class="wind-value__text">{{ wind }} K/M</span>
             </div>
           </div>
         </div>
         <div class="city-name__container">
           <div class="city-name__underline">
-            <span class="city-name__text">{{city}}</span>
+            <span class="city-name__text">{{ city }}</span>
           </div>
         </div>
       </div>
@@ -70,104 +76,180 @@
         <div class="twitter-feed__header">
           <svg class="twitter__icon" viewBox="4332 625.812 30 24.375">
             <defs>
-              <style>.twitter-icon-fill {
-                fill: #03a9f4;
-              }</style>
+              <style>
+                .twitter-icon-fill {
+                  fill: #03a9f4;
+                }
+              </style>
             </defs>
-            <path class="twitter-icon-fill"
-                  d="M30,50.886a12.823,12.823,0,0,1-3.544.971,6.116,6.116,0,0,0,2.706-3.4,12.291,12.291,0,0,1-3.9,1.489,6.15,6.15,0,0,0-10.639,4.206,6.333,6.333,0,0,0,.143,1.4A17.408,17.408,0,0,1,2.089,49.121a6.152,6.152,0,0,0,1.89,8.22A6.074,6.074,0,0,1,1.2,56.584v.067a6.179,6.179,0,0,0,4.928,6.043,6.139,6.139,0,0,1-1.613.2,5.439,5.439,0,0,1-1.164-.1A6.209,6.209,0,0,0,9.1,67.076,12.358,12.358,0,0,1,1.472,69.7,11.521,11.521,0,0,1,0,69.615a17.315,17.315,0,0,0,9.435,2.76c11.318,0,17.505-9.375,17.505-17.5,0-.272-.009-.534-.023-.8A12.269,12.269,0,0,0,30,50.886Z"
-                  transform="translate(4332 577.812)"/>
+            <path
+              class="twitter-icon-fill"
+              d="M30,50.886a12.823,12.823,0,0,1-3.544.971,6.116,6.116,0,0,0,2.706-3.4,12.291,12.291,0,0,1-3.9,1.489,6.15,6.15,0,0,0-10.639,4.206,6.333,6.333,0,0,0,.143,1.4A17.408,17.408,0,0,1,2.089,49.121a6.152,6.152,0,0,0,1.89,8.22A6.074,6.074,0,0,1,1.2,56.584v.067a6.179,6.179,0,0,0,4.928,6.043,6.139,6.139,0,0,1-1.613.2,5.439,5.439,0,0,1-1.164-.1A6.209,6.209,0,0,0,9.1,67.076,12.358,12.358,0,0,1,1.472,69.7,11.521,11.521,0,0,1,0,69.615a17.315,17.315,0,0,0,9.435,2.76c11.318,0,17.505-9.375,17.505-17.5,0-.272-.009-.534-.023-.8A12.269,12.269,0,0,0,30,50.886Z"
+              transform="translate(4332 577.812)" />
           </svg>
           <span class="twitter-feed__text">Twitter Feed</span>
-          <span class="twitter-feed-tag__text">#{{city}}</span>
+          <span class="twitter-feed-tag__text">#{{ city }}</span>
         </div>
         <div class="twitter-feed__body">
-
-          <ng-container *ngIf="tweets$ | async as tweets; else loadingTweets">
-            <p *ngIf="tweets && tweets.length === 0" class="twitter-no-tweets__text">No Tweets Found</p>
-          <div class="twitter-tweet__container" *ngFor="let tweet of tweets">
-            <div class="tweet-user__wrapper">
-            <img [src]="tweet.user.photo" alt="avatar" class="tweet-avatar__image">
-              <div>
-            <span class="tweet-username__text">{{tweet.user.name}}</span>
-            <span class="tweet-handle__text">{{tweet.user.handle}}</span>
+          @if (tweets$ | async; as tweets) {
+            @if (tweets && tweets.length === 0) {
+              <p class="twitter-no-tweets__text">No Tweets Found</p>
+            }
+            @for (tweet of tweets; track tweet) {
+              <div class="twitter-tweet__container">
+                <div class="tweet-user__wrapper">
+                  <img [src]="tweet.user.photo" alt="avatar" class="tweet-avatar__image" />
+                  <div>
+                    <span class="tweet-username__text">{{ tweet.user.name }}</span>
+                    <span class="tweet-handle__text">{{ tweet.user.handle }}</span>
+                  </div>
+                </div>
+                <p class="tweet__text">{{ tweet.text }}</p>
               </div>
-              </div>
-            <p class="tweet__text">{{tweet.text}}</p>
-          </div>
-          </ng-container>
-
-          <ng-template #loadingTweets>
+            }
+          } @else {
             <div class="twitter__loader"></div>
-          </ng-template>
-
+          }
         </div>
       </section>
       <section class="forecast__container">
-        <div class="day-weather__container" [ngSwitch]="true" *ngFor="let day of daysForecast | keyvalue">
-          <span class="day-name__text">{{day.key}}</span>
-          <svg class="forecast-condition__icon" *ngSwitchCase="day.value.state === 'Clouds'"
-               viewBox="2436.9 -843.1 275.5 274.1">
-            <g data-name="cloudy icon" transform="translate(84 790)">
-              <circle cx="137" cy="137" r="137" fill="#fff" data-name="Ellipse 23" transform="translate(2354 -1633)"/>
-              <path fill="#ffde17"
-                    d="M2523.4-1361.5a37.2 37.2 0 0 0 8.4-23.4c0-22-19.8-40-44.1-40l-3.4.1h-.5a39.8 39.8 0 0 0-39.4-33.7 40.1 40.1 0 0 0-10 1.2 40 40 0 0 0-35.2-21.2 40.1 40.1 0 0 0-38.5 29 137.4 137.4 0 0 1-7.8-45.8 138.8 138.8 0 0 1 2.8-27.8 137 137 0 0 1 8-25.8 137.8 137.8 0 0 1 12.7-23.4 138.8 138.8 0 0 1 16.8-20.4 138.8 138.8 0 0 1 20.4-16.9 137.8 137.8 0 0 1 23.4-12.7 137 137 0 0 1 25.9-8 138.8 138.8 0 0 1 27.7-2.8 138.8 138.8 0 0 1 27.8 2.8 137 137 0 0 1 25.9 8 137.8 137.8 0 0 1 23.4 12.7 138.8 138.8 0 0 1 20.4 16.9 138.7 138.7 0 0 1 16.8 20.4 137.8 137.8 0 0 1 12.7 23.4 137 137 0 0 1 8 25.8 138.8 138.8 0 0 1 2.8 27.8 137.4 137.4 0 0 1-8 46.1 137.2 137.2 0 0 1-21.9 39.6 138.2 138.2 0 0 1-33.2 30.1 136.8 136.8 0 0 1-41.9 18z"
-                    data-name="Subtraction 1"/>
-            </g>
-          </svg>
-          <svg *ngSwitchCase="day.value.state === 'Haze' || day.value.state === 'Fog'" viewBox="0 0 454 366">
-            <path fill="#12bcff"
-                  d="M340 110c-40 0-75-14-110-26-30-11-61-21-92-27-35-6-65 6-89 34a28 28 0 0 1-40 3C-3 83-3 66 8 54 53 1 110-9 174 7c36 9 71 25 106 36 19 5 39 10 58 11 27 2 48-13 65-33 12-13 29-15 41-5s13 28 1 41c-28 33-63 53-105 53zM120 312c-27-1-51 11-70 34-11 13-29 15-41 4-12-10-12-28-1-40 45-53 103-63 167-47 37 10 72 25 108 36 18 6 37 10 55 11 27 2 47-12 64-32 8-9 17-15 30-12 21 4 29 28 16 45-37 45-85 65-143 51-34-8-66-21-99-32-27-9-53-18-86-18zM123 128c42 1 81 15 120 29 26 9 52 18 79 24 28 6 53-3 74-24l11-11c11-11 27-11 39-1 10 10 11 26 1 38-35 43-81 64-137 52-34-7-67-20-100-32-29-10-59-20-91-19-28 1-51 13-69 34-12 13-29 15-41 4s-12-28 0-41c30-35 68-52 114-53z"/>
-          </svg>
-          <svg class="forecast-condition__icon"
-               *ngSwitchCase="day.value.state === 'Rain' || day.value.state === 'Drizzle'"
-               viewBox="3170 -843.1 163.5 242.7">
-            <g data-name="Rain Icon">
-              <g data-name="Water Drops">
-                <path fill="#0032cc" d="M3295.4-824.5s85.8 133.5 0 133.5 0-133.5 0-133.5z" data-name="Path 7"/>
-                <path fill="#003eff" d="M3239.4-843s-156.1 242.6 0 242.6 0-242.7 0-242.7z" data-name="Path 3"/>
-              </g>
-            </g>
-          </svg>
-          <svg class="forecast-condition__icon" *ngSwitchCase="day.value.state === 'Storm' || day.value.state === 'Thunderstorm'"
-               viewBox="3487.9 -810.7 291.2 200.3">
-            <g data-name="Strom icon" transform="translate(1959 -1260.7)">
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 14" rx="55.3" ry="51.7"
-                       transform="translate(1529 490.4)"/>
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 15" rx="55.3" ry="51.7"
-                       transform="translate(1569.6 467.8)"/>
-              <circle cx="55.3" cy="55.3" r="55.3" class="cls-1" data-name="Ellipse 16"
-                      transform="translate(1618.9 476.8)"/>
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 17" rx="55.3" ry="51.7"
-                       transform="translate(1631.8 450)"/>
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 18" rx="55.3" ry="51.7"
-                       transform="translate(1687.1 477.5)"/>
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 19" rx="55.3" ry="51.7"
-                       transform="translate(1709.6 507.3)"/>
-              <circle cx="55.3" cy="55.3" r="55.3" class="cls-1" data-name="Ellipse 20"
-                      transform="translate(1639.6 500.1)"/>
-              <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 21" rx="55.3" ry="51.7"
-                       transform="translate(1569.6 507.3)"/>
-              <path fill="none" stroke="#fd0" stroke-width="18"
-                    d="M1732.5 644l-61.4-61.4 22.5-10.3 26.8 5.1 9.5-22.4-38-37.2" data-name="Path 59"/>
-              <path fill="none" stroke="#fd0" stroke-width="15" d="M1597.2 539.5l31.2 25.9-24.8 22.2 17.3 36.2"
-                    data-name="Path 60"/>
-            </g>
-          </svg>
-          <svg class="forecast-condition__icon"
-               *ngSwitchCase="day.value.state === 'Sunny' || day.value.state === 'Clear'"
-               viewBox="2050 -845 262 262">
-            <circle cx="131" cy="131" r="131" fill="#ffde17" data-name="Sun Icon" transform="translate(2050 -845)"/>
-          </svg>
-
-
-          <span class="day-temp__text">{{day.value.temp}}°</span>
-          <span class="day-state__text">{{day.value.state}}</span>
-        </div>
+        @for (day of daysForecast | keyvalue; track day) {
+          <div class="day-weather__container">
+            <span class="day-name__text">{{ day.key }}</span>
+            @switch (true) {
+              @case (day.value.state === 'Clouds') {
+                <svg class="forecast-condition__icon" viewBox="2436.9 -843.1 275.5 274.1">
+                  <g data-name="cloudy icon" transform="translate(84 790)">
+                    <circle
+                      cx="137"
+                      cy="137"
+                      r="137"
+                      fill="#fff"
+                      data-name="Ellipse 23"
+                      transform="translate(2354 -1633)" />
+                    <path
+                      fill="#ffde17"
+                      d="M2523.4-1361.5a37.2 37.2 0 0 0 8.4-23.4c0-22-19.8-40-44.1-40l-3.4.1h-.5a39.8 39.8 0 0 0-39.4-33.7 40.1 40.1 0 0 0-10 1.2 40 40 0 0 0-35.2-21.2 40.1 40.1 0 0 0-38.5 29 137.4 137.4 0 0 1-7.8-45.8 138.8 138.8 0 0 1 2.8-27.8 137 137 0 0 1 8-25.8 137.8 137.8 0 0 1 12.7-23.4 138.8 138.8 0 0 1 16.8-20.4 138.8 138.8 0 0 1 20.4-16.9 137.8 137.8 0 0 1 23.4-12.7 137 137 0 0 1 25.9-8 138.8 138.8 0 0 1 27.7-2.8 138.8 138.8 0 0 1 27.8 2.8 137 137 0 0 1 25.9 8 137.8 137.8 0 0 1 23.4 12.7 138.8 138.8 0 0 1 20.4 16.9 138.7 138.7 0 0 1 16.8 20.4 137.8 137.8 0 0 1 12.7 23.4 137 137 0 0 1 8 25.8 138.8 138.8 0 0 1 2.8 27.8 137.4 137.4 0 0 1-8 46.1 137.2 137.2 0 0 1-21.9 39.6 138.2 138.2 0 0 1-33.2 30.1 136.8 136.8 0 0 1-41.9 18z"
+                      data-name="Subtraction 1" />
+                  </g>
+                </svg>
+              }
+              @case (day.value.state === 'Haze' || day.value.state === 'Fog') {
+                <svg viewBox="0 0 454 366">
+                  <path
+                    fill="#12bcff"
+                    d="M340 110c-40 0-75-14-110-26-30-11-61-21-92-27-35-6-65 6-89 34a28 28 0 0 1-40 3C-3 83-3 66 8 54 53 1 110-9 174 7c36 9 71 25 106 36 19 5 39 10 58 11 27 2 48-13 65-33 12-13 29-15 41-5s13 28 1 41c-28 33-63 53-105 53zM120 312c-27-1-51 11-70 34-11 13-29 15-41 4-12-10-12-28-1-40 45-53 103-63 167-47 37 10 72 25 108 36 18 6 37 10 55 11 27 2 47-12 64-32 8-9 17-15 30-12 21 4 29 28 16 45-37 45-85 65-143 51-34-8-66-21-99-32-27-9-53-18-86-18zM123 128c42 1 81 15 120 29 26 9 52 18 79 24 28 6 53-3 74-24l11-11c11-11 27-11 39-1 10 10 11 26 1 38-35 43-81 64-137 52-34-7-67-20-100-32-29-10-59-20-91-19-28 1-51 13-69 34-12 13-29 15-41 4s-12-28 0-41c30-35 68-52 114-53z" />
+                </svg>
+              }
+              @case (day.value.state === 'Rain' || day.value.state === 'Drizzle') {
+                <svg class="forecast-condition__icon" viewBox="3170 -843.1 163.5 242.7">
+                  <g data-name="Rain Icon">
+                    <g data-name="Water Drops">
+                      <path fill="#0032cc" d="M3295.4-824.5s85.8 133.5 0 133.5 0-133.5 0-133.5z" data-name="Path 7" />
+                      <path fill="#003eff" d="M3239.4-843s-156.1 242.6 0 242.6 0-242.7 0-242.7z" data-name="Path 3" />
+                    </g>
+                  </g>
+                </svg>
+              }
+              @case (day.value.state === 'Storm' || day.value.state === 'Thunderstorm') {
+                <svg class="forecast-condition__icon" viewBox="3487.9 -810.7 291.2 200.3">
+                  <g data-name="Strom icon" transform="translate(1959 -1260.7)">
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 14"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1529 490.4)" />
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 15"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1569.6 467.8)" />
+                    <circle
+                      cx="55.3"
+                      cy="55.3"
+                      r="55.3"
+                      class="cls-1"
+                      data-name="Ellipse 16"
+                      transform="translate(1618.9 476.8)" />
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 17"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1631.8 450)" />
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 18"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1687.1 477.5)" />
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 19"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1709.6 507.3)" />
+                    <circle
+                      cx="55.3"
+                      cy="55.3"
+                      r="55.3"
+                      class="cls-1"
+                      data-name="Ellipse 20"
+                      transform="translate(1639.6 500.1)" />
+                    <ellipse
+                      cx="55.3"
+                      cy="51.7"
+                      class="cls-1"
+                      data-name="Ellipse 21"
+                      rx="55.3"
+                      ry="51.7"
+                      transform="translate(1569.6 507.3)" />
+                    <path
+                      fill="none"
+                      stroke="#fd0"
+                      stroke-width="18"
+                      d="M1732.5 644l-61.4-61.4 22.5-10.3 26.8 5.1 9.5-22.4-38-37.2"
+                      data-name="Path 59" />
+                    <path
+                      fill="none"
+                      stroke="#fd0"
+                      stroke-width="15"
+                      d="M1597.2 539.5l31.2 25.9-24.8 22.2 17.3 36.2"
+                      data-name="Path 60" />
+                  </g>
+                </svg>
+              }
+              @case (day.value.state === 'Sunny' || day.value.state === 'Clear') {
+                <svg class="forecast-condition__icon" viewBox="2050 -845 262 262">
+                  <circle
+                    cx="131"
+                    cy="131"
+                    r="131"
+                    fill="#ffde17"
+                    data-name="Sun Icon"
+                    transform="translate(2050 -845)" />
+                </svg>
+              }
+            }
+            <span class="day-temp__text">{{ day.value.temp }}°</span>
+            <span class="day-state__text">{{ day.value.state }}</span>
+          </div>
+        }
       </section>
     </main>
   </section>
 </div>
-
 
 <app-error [message]="errorMessage"></app-error>

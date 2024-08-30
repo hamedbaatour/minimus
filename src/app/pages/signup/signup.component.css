@@ -54,7 +54,7 @@
   flex-flow: column;
   min-height: 100%;
   border-radius: 0 10px 10px 0;
-  background: url("https://source.unsplash.com/random/1200x900?mountain") no-repeat center center;
+  background: url('https://source.unsplash.com/random/1200x900?mountain') no-repeat center center;
   background-size: cover;
   position: relative;
 }
@@ -101,7 +101,6 @@
   width: 80%;
 }
 
-
 .signup-btn {
   background-color: #00ff9b;
   padding: 1rem;
@@ -132,7 +131,6 @@
 .btn-disabled:hover {
   background: lightgray;
 }
-
 
 .login-link-wrapper {
   margin-top: 3rem;
