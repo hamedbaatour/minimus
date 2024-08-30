@@ -19,8 +19,8 @@ import {NguiAutoCompleteModule} from '@ngui/auto-complete';
 import {FormsModule} from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {HowToSetupComponent} from './pages/how-to-setup/how-to-setup.component';
-import {FbService} from "./services/fb/fb.service";
-import {FbInitService} from "./services/fb/fb-init.service";
+import {FbService} from './services/fb/fb.service';
+import {FbInitService} from './services/fb/fb-init.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import {FbInitService} from "./services/fb/fb-init.service";
     HowToSetupComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     NguiAutoCompleteModule,

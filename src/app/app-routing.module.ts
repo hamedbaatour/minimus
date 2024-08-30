@@ -8,7 +8,7 @@ import {SignupComponent} from './pages/signup/signup.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AppGuard} from './guards/app.guard';
 import {HowToSetupComponent} from './pages/how-to-setup/how-to-setup.component';
-import {RedirectWhenSetupGuard, SetupGuard} from "./guards/setup.guard";
+import {RedirectWhenSetupGuard, SetupGuard} from './guards/setup.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [SetupGuard, AppGuard]},

@@ -8,7 +8,7 @@ interface CountryInfo {
   capital: string[];
   capitalInfo: {
     latlng: [number, number];
-  }
+  };
 }
 
 @Component({
