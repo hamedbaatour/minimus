@@ -4,7 +4,6 @@ import {WeatherService} from '../../services/weather/weather.service';
 import {forkJoin, Observable, Subscription} from 'rxjs';
 import {UiService} from '../../services/ui/ui.service';
 import {concatMap} from 'rxjs/operators';
-import {TwitterService} from '../../services/twitter/twitter.service';
 
 @Component({
   selector: 'app-details',
@@ -27,7 +26,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   errorMessage: string;
   tweets$: Observable<any>;
 
-  constructor(public twitter: TwitterService, public activeRouter: ActivatedRoute, public weather: WeatherService, public ui: UiService) {
+  constructor(public activeRouter: ActivatedRoute, public weather: WeatherService, public ui: UiService) {
 
   }
 
@@ -93,8 +92,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.errorMessage = '';
       }, 2500);
     });
-
-    this.tweets$ = this.twitter.fetchTweets(this.city);
   }
 
   ngOnDestroy() {

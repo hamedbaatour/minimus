@@ -18,6 +18,9 @@ import {environment} from '../environments/environment';
 import {NguiAutoCompleteModule} from '@ngui/auto-complete';
 import {FormsModule} from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {HowToSetupComponent} from './pages/how-to-setup/how-to-setup.component';
+import {FbService} from "./services/fb/fb.service";
+import {FbInitService} from "./services/fb/fb-init.service";
 
 @NgModule({
   declarations: [
@@ -30,15 +33,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LoginComponent,
     SignupComponent,
     ErrorComponent,
+    HowToSetupComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NguiAutoCompleteModule,
     FormsModule,
-    AngularFireLite.forRoot(environment.config),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    environment.config.apiKey !== '' ? AngularFireLite.forRoot(environment.config) : [],
+  ],
+  providers: [
+    environment.config.apiKey === '' ? {provide: FbService, useClass: FbInitService} : [],
   ],
   bootstrap: [AppComponent]
 })

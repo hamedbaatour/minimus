@@ -26,10 +26,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.darkModeActive = value;
     });
 
-    this.fb.auth.userData().subscribe((user) => {
-      this.userEmail = user.email;
+    this.fb.userEmail().subscribe((email) => {
+      this.userEmail = email;
     });
-
   }
 
   toggleMenu() {
@@ -49,5 +48,4 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/login');
     this.fb.auth.signout();
   }
-
 }

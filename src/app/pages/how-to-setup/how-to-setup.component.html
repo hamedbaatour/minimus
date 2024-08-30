@@ -1,0 +1,23 @@
+<div class="main-card">
+
+  <h1>Whoops!</h1>
+  <p>Looks like you're not setup correctly to run the project</p>
+  <h2>Accounts</h2>
+  <p>You will need a Firebase & Open Weather account and API Keys</p>
+
+  <ng-container *ngIf="!hasFirebaseConfig">
+    <h4>Firebase</h4>
+
+    <p>Signup for a firebase account and project using the <a href="https://console.firebase.google.com/">Firebase Console</a>. Make sure you setup <b>Authentication</b> and allow users to signin using email & password. Make sure you setup <b>Firestore</b> to store what cities you follow</p>
+
+    <p>Setup a webapp and copy your config into <code>environment.development.ts</code></p>
+  </ng-container>
+  <ng-container *ngIf="!hasWeatherApiKey">
+    <h4>Open Weather</h4>
+
+    <p>Signup for an OpenWeather account at <a href="https://openweathermap.org">https://openweathermap.org</a>.</p>
+
+    <p>Get a Weather API Key and then add it to <code>appID</code> within <code>environment.development.ts</code></p>
+  </ng-container>
+
+</div>

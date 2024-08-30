@@ -1,4 +1,3 @@
-/*Home Layout*/
 .main__container {
   display: flex;
   justify-content: space-around;
@@ -7,17 +6,3 @@
   min-height: 90vh;
   position: relative;
 }
-
-/*.clouds {*/
-/*position: absolute;*/
-/*z-index: 0;*/
-/*height: 10rem;*/
-/*right: -20rem;*/
-/*animation: moveacross 45s infinite;*/
-/*}*/
-
-/*@keyframes moveacross {*/
-/*100% {*/
-/*right: 100vw;*/
-/*}*/
-/*}*/

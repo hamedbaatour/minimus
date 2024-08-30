@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireLiteAuth, AngularFireLiteFirestore} from 'angularfire-lite';
-import {first, switchMap} from 'rxjs/operators';
+import {first, map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,10 @@ import {first, switchMap} from 'rxjs/operators';
 export class FbService {
 
   constructor(public auth: AngularFireLiteAuth, public fs: AngularFireLiteFirestore) {
+  }
+
+  userEmail() {
+    return this.auth.userData().pipe(map(x => x.email));
   }
 
   isAuth() {

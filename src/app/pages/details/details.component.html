@@ -66,43 +66,6 @@
       </div>
     </section>
     <main class="body-content__wrapper">
-      <section class="twitter-feed__container">
-        <div class="twitter-feed__header">
-          <svg class="twitter__icon" viewBox="4332 625.812 30 24.375">
-            <defs>
-              <style>.twitter-icon-fill {
-                fill: #03a9f4;
-              }</style>
-            </defs>
-            <path class="twitter-icon-fill"
-                  d="M30,50.886a12.823,12.823,0,0,1-3.544.971,6.116,6.116,0,0,0,2.706-3.4,12.291,12.291,0,0,1-3.9,1.489,6.15,6.15,0,0,0-10.639,4.206,6.333,6.333,0,0,0,.143,1.4A17.408,17.408,0,0,1,2.089,49.121a6.152,6.152,0,0,0,1.89,8.22A6.074,6.074,0,0,1,1.2,56.584v.067a6.179,6.179,0,0,0,4.928,6.043,6.139,6.139,0,0,1-1.613.2,5.439,5.439,0,0,1-1.164-.1A6.209,6.209,0,0,0,9.1,67.076,12.358,12.358,0,0,1,1.472,69.7,11.521,11.521,0,0,1,0,69.615a17.315,17.315,0,0,0,9.435,2.76c11.318,0,17.505-9.375,17.505-17.5,0-.272-.009-.534-.023-.8A12.269,12.269,0,0,0,30,50.886Z"
-                  transform="translate(4332 577.812)"/>
-          </svg>
-          <span class="twitter-feed__text">Twitter Feed</span>
-          <span class="twitter-feed-tag__text">#{{city}}</span>
-        </div>
-        <div class="twitter-feed__body">
-
-          <ng-container *ngIf="tweets$ | async as tweets; else loadingTweets">
-            <p *ngIf="tweets && tweets.length === 0" class="twitter-no-tweets__text">No Tweets Found</p>
-          <div class="twitter-tweet__container" *ngFor="let tweet of tweets">
-            <div class="tweet-user__wrapper">
-            <img [src]="tweet.user.photo" alt="avatar" class="tweet-avatar__image">
-              <div>
-            <span class="tweet-username__text">{{tweet.user.name}}</span>
-            <span class="tweet-handle__text">{{tweet.user.handle}}</span>
-              </div>
-              </div>
-            <p class="tweet__text">{{tweet.text}}</p>
-          </div>
-          </ng-container>
-
-          <ng-template #loadingTweets>
-            <div class="twitter__loader"></div>
-          </ng-template>
-
-        </div>
-      </section>
       <section class="forecast__container">
         <div class="day-weather__container" [ngSwitch]="true" *ngFor="let day of daysForecast | keyvalue">
           <span class="day-name__text">{{day.key}}</span>

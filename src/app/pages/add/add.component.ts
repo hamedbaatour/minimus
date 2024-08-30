@@ -4,6 +4,13 @@ import {WeatherService} from '../../services/weather/weather.service';
 import {FbService} from '../../services/fb/fb.service';
 import {first} from 'rxjs/operators';
 
+interface CountryInfo {
+  capital: string[];
+  capitalInfo: {
+    latlng: [number, number];
+  }
+}
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -14,7 +21,7 @@ export class AddComponent implements OnInit, OnDestroy {
   temp: number;
   city = 'Rome';
   state: string;
-  capitals = [];
+  capitals: string[] = [];
   selectedCity;
   cardCity;
   showNote = false;
@@ -32,10 +39,10 @@ export class AddComponent implements OnInit, OnDestroy {
       this.temp = Math.ceil(Number(payload.main.temp));
     });
 
-    this.http.get('https://restcountries.eu/rest/v2/all').pipe((first())).subscribe((countries: Array<any>) => {
-      countries.forEach((country: any) => {
+    this.http.get('https://restcountries.com/v3.1/all').subscribe((countries: CountryInfo[]) => {
+      countries.forEach((country) => {
         if (country.capital.length) {
-          this.capitals.push(country.capital);
+          this.capitals.push(...country.capital);
         }
       });
       this.capitals.sort();
@@ -43,7 +50,7 @@ export class AddComponent implements OnInit, OnDestroy {
 
     this.sub1 = this.fb.getCities().subscribe((cities) => {
       Object.values(cities).forEach((city: any) => {
-        if (city.name === 'Rome') {
+        if (city.name.toLowerCase() === 'rome') {
           this.followedCM = true;
         }
       });

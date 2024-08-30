@@ -166,13 +166,11 @@
 */
 
 .body-content__wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  grid-template-rows: 1fr;
+  display: flex;
   justify-items: center;
   justify-content: center;
-  align-content: start;
-  align-items: start;
+  align-content: flex-start;
+  align-items: flex-start;
   box-sizing: border-box;
   grid-column-gap: 1rem;
   width: 100%;
@@ -186,91 +184,10 @@
   flex-wrap: wrap;
 }
 
-.twitter-feed__container {
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.twitter-feed__body {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-flow: column;
-}
-
-.twitter__loader {
-  border: 3px solid hsla(185, 100%, 62%, 0.2);
-  border-top-color: #3cefff;
-  border-radius: 50%;
-  width: 3em;
-  height: 3em;
-  animation: spin 1s linear infinite;
-  justify-self: center;
-  align-self: center;
-  margin-top: 3rem;
-}
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
-}
-
-
-.twitter-no-tweets__text {
-  margin-top: 3rem;
-  text-align: center;
-}
-
-.twitter-feed__text {
-  color: #0c1066;
-  font-size: 1.25rem;
-}
-
-.twitter__icon {
-  width: 1.5rem;
-}
-
-.twitter-feed-tag__text {
-  font-size: 0.85rem;
-  color: #5f84fb;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-}
-
-.twitter-feed__header {
-  display: grid;
-  grid-template-rows: 2rem;
-  grid-template-columns: 0.5fr 1.5fr 1fr;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-}
-
-
-.twitter-tweet__container {
-  margin-top: 2rem;
-}
-
-.tweet-user__wrapper {
-  display: flex;
-  margin-bottom: 0.5rem;
-}
-
-.tweet-avatar__image {
-  margin-right: 0.5rem;
-  border-radius: 50%;
-  height: 3rem;
-  width: 3rem;
-}
-
-.tweet-username__text {
-  display: block;
-  font-weight: bold;
-}
-
-.tweet__text {
-  margin-top: 0
 }
 
 .day-weather__container {
@@ -326,19 +243,10 @@
   .main-weather__card {
     width: 80%;
   }
-
-  .body-content__wrapper {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Media Query:   LT-MD   */
 @media screen and (max-width: 959px) {
-
-  .header-content__wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr;
-  }
 
   .back__button {
     position: static;
