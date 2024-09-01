@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { filter, first, map, switchMap } from 'rxjs/operators';
+import {filter, first, map, switchMap, tap} from 'rxjs/operators';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
 import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
@@ -45,11 +45,12 @@ export class FbService {
     return from(signOut(this.auth));
   }
 
-  getCities(): Observable<City> {
+  getCities(): Observable<City[]> {
     return user(this.auth).pipe(
       filter(isUser),
       map(x => (x as User).uid),
-      switchMap((uid: string) => collectionData(collection(this.firestore, uid)))
+      switchMap((uid: string) => collectionData(collection(this.firestore, uid))),
+      tap(x => console.log(x))
     );
   }
 
@@ -57,7 +58,7 @@ export class FbService {
     return user(this.auth).pipe(
       map(x => (x as User).uid),
       switchMap(uid =>
-        addDoc(collection(this.firestore, `${uid}/${name}`), {
+        addDoc(collection(this.firestore, `${uid}`), {
           name,
           added: new Date().toISOString(),
         })

@@ -43,11 +43,11 @@ export class AddComponent implements OnInit, OnDestroy {
     });
 
     this.http
-      .get<Country[]>('https://restcountries.eu/rest/v2/all')
+      .get<Country[]>('https://restcountries.com/v2/all')
       .pipe(first())
       .subscribe(countries => {
         countries.forEach(country => {
-          if (country.capital.length) {
+          if (country.capital && country.capital.length) {
             this.capitals.push(country.capital);
           }
         });
